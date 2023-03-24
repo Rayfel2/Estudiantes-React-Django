@@ -118,7 +118,6 @@ class User(AbstractUser, PermissionsMixin):
         verbose_name=_("email"), max_length=255, unique=True
     )
     birth_date = models.DateField(verbose_name=_("birth date"))
-    is_admin = models.BooleanField(verbose_name=_("is admin"), default=False)
 
     objects = UserManager()
     USERNAME_FIELD = "username"
