@@ -108,6 +108,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     first_name = models.CharField(verbose_name=_("first name"), max_length=50)
     last_name = models.CharField(verbose_name=_("last name"), max_length=50)
+    username = models.CharField(
+        verbose_name=_("username"), max_length=50, unique=True
+    )
     email = models.EmailField(
         verbose_name=_("email"), max_length=255, unique=True
     )
@@ -115,6 +118,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(verbose_name=_("is admin"), default=False)
 
     objects = UserManager()
+    USERNAME_FIELD = "username"
     REQUIRED_FIELDS = [
         "document_type",
         "document_no",
@@ -124,7 +128,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     ]
 
     def __str__(self) -> str:
-        return self.email
+        return self.username
 
     def has_perm(self, perm, obj) -> bool:
         return self.is_admin
@@ -158,19 +162,11 @@ class Student(models.Model):
         on_delete=models.CASCADE,
         related_name="student",
     )
-    registration_number = models.CharField(
-        verbose_name=_("registration number"),
-        max_length=20,
-        unique=True,
-    )
     career = models.ForeignKey(
         Career,
         verbose_name=_("career"),
         on_delete=models.PROTECT,
         related_name="students",
-    )
-    email = models.EmailField(
-        verbose_name=_("email"), max_length=255, unique=True
     )
     income_year = models.PositiveSmallIntegerField(
         verbose_name=_("income year"),
@@ -208,12 +204,6 @@ class Professor(models.Model):
         verbose_name=_("user"),
         on_delete=models.CASCADE,
         related_name="professor",
-    )
-    username = models.CharField(
-        verbose_name=_("username"), max_length=50, unique=True
-    )
-    email = models.EmailField(
-        verbose_name=_("email"), max_length=255, unique=True
     )
     income_year = models.PositiveSmallIntegerField(
         verbose_name=_("income year"),
