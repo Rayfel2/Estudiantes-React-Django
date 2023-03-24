@@ -167,22 +167,26 @@ class Student(models.Model):
     )
     income_year = models.PositiveSmallIntegerField(
         verbose_name=_("income year"),
+        default=2000,
         validators=[MinValueValidator(1900)],
     )
     income_cycle = models.PositiveSmallIntegerField(
         verbose_name=_("income cycle"),
+        default=1,
         validators=[MinValueValidator(1)],
     )
     overall_gpa = models.DecimalField(
         verbose_name=_("overall GPA"),
         max_digits=3,
         decimal_places=2,
+        default=0,
         validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
     )
     last_gpa = models.DecimalField(
         verbose_name=_("last GPA"),
         max_digits=3,
         decimal_places=2,
+        default=0,
         validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
     )
 
@@ -204,6 +208,7 @@ class Professor(models.Model):
     )
     income_year = models.PositiveSmallIntegerField(
         verbose_name=_("income year"),
+        default=2000,
         validators=[MinValueValidator(1900)],
     )
 
@@ -222,6 +227,7 @@ class Subject(models.Model):
     is_lab = models.BooleanField(verbose_name=_("is lab"), default=False)
     credits = models.PositiveSmallIntegerField(
         verbose_name=_("credits"),
+        default=0,
         validators=[MinValueValidator(0), MaxValueValidator(10)],
     )
 
@@ -251,6 +257,7 @@ class AcademicCycle(models.Model):
     )
     taken_credits = models.PositiveSmallIntegerField(
         verbose_name=_("taken credits"),
+        default=0,
         validators=[MinValueValidator(0), MaxValueValidator(50)],
     )
 
@@ -286,12 +293,14 @@ class SubjectStudentCycle(models.Model):
         verbose_name=_("mid-term grade"),
         max_digits=4,
         decimal_places=2,
+        default=0,
         validators=[MinValueValidator(0.0), MaxValueValidator(70.0)],
     )
     final_grade = models.DecimalField(
         verbose_name=_("final grade"),
         max_digits=5,
         decimal_places=2,
+        default=0,
         validators=[MinValueValidator(0.0), MaxValueValidator(100.0)],
     )
     final_grade_letter = models.CharField(
@@ -306,6 +315,20 @@ class SubjectStudentCycle(models.Model):
             ("D", "D"),
             ("F", "F"),
         ),
+    )
+    overall_gpa = models.DecimalField(
+        verbose_name=_("overall GPA"),
+        max_digits=3,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
+    )
+    last_gpa = models.DecimalField(
+        verbose_name=_("last GPA"),
+        max_digits=3,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
     )
 
     def __str__(self) -> str:
