@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
+from core import models
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,3 +33,10 @@ class UserSerializer(serializers.ModelSerializer):
             "last_login",
             "date_joined",
         )
+
+    def to_representation(self, instance):
+        respresentation = super().to_representation(instance)
+        document_type_id = respresentation["document_type"]
+        document_type = models.DocumentType.objects.get(id=document_type_id)
+        respresentation["document_type"] = document_type.name
+        return respresentation
