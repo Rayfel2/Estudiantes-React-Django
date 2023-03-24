@@ -3,7 +3,7 @@ from __future__ import annotations
 from django.conf import settings
 from django.contrib.auth.models import (
     BaseUserManager,
-    AbstractBaseUser,
+    AbstractUser,
     PermissionsMixin,
 )
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -28,6 +28,9 @@ class UserManager(BaseUserManager):
         birth_date: date,
     ) -> User:
         """Create a new user with the given details."""
+
+        if document_type.__class__ == int:
+            document_type = DocumentType.objects.get(id=document_type)
 
         user = self.model(
             document_type=document_type,
@@ -66,8 +69,8 @@ class UserManager(BaseUserManager):
             password=password,
             birth_date=birth_date,
         )
-        user.is_staff = True
         user.is_superuser = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
@@ -89,7 +92,7 @@ class DocumentType(models.Model):
         return self.name
 
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractUser, PermissionsMixin):
     """Custom user model."""
 
     id = models.BigAutoField(
@@ -108,6 +111,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     first_name = models.CharField(verbose_name=_("first name"), max_length=50)
     last_name = models.CharField(verbose_name=_("last name"), max_length=50)
+    username = models.CharField(
+        verbose_name=_("username"), max_length=50, unique=True
+    )
     email = models.EmailField(
         verbose_name=_("email"), max_length=255, unique=True
     )
@@ -115,22 +121,18 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(verbose_name=_("is admin"), default=False)
 
     objects = UserManager()
+    USERNAME_FIELD = "username"
     REQUIRED_FIELDS = [
         "document_type",
         "document_no",
         "first_name",
         "last_name",
         "email",
+        "birth_date",
     ]
 
     def __str__(self) -> str:
-        return self.email
-
-    def has_perm(self, perm, obj) -> bool:
-        return self.is_admin
-
-    def has_module_perms(self, app_label) -> bool:
-        return self.is_admin
+        return self.username
 
 
 class Career(models.Model):
@@ -158,19 +160,11 @@ class Student(models.Model):
         on_delete=models.CASCADE,
         related_name="student",
     )
-    registration_number = models.CharField(
-        verbose_name=_("registration number"),
-        max_length=20,
-        unique=True,
-    )
     career = models.ForeignKey(
         Career,
         verbose_name=_("career"),
         on_delete=models.PROTECT,
         related_name="students",
-    )
-    email = models.EmailField(
-        verbose_name=_("email"), max_length=255, unique=True
     )
     income_year = models.PositiveSmallIntegerField(
         verbose_name=_("income year"),
@@ -208,12 +202,6 @@ class Professor(models.Model):
         verbose_name=_("user"),
         on_delete=models.CASCADE,
         related_name="professor",
-    )
-    username = models.CharField(
-        verbose_name=_("username"), max_length=50, unique=True
-    )
-    email = models.EmailField(
-        verbose_name=_("email"), max_length=255, unique=True
     )
     income_year = models.PositiveSmallIntegerField(
         verbose_name=_("income year"),
@@ -310,7 +298,15 @@ class SubjectStudentCycle(models.Model):
     final_grade_letter = models.CharField(
         verbose_name=_("final grade letter"),
         max_length=2,
-        choices=("A", "B+", "B", "C+", "C", "D", "F"),
+        choices=(
+            ("A", "A"),
+            ("B+", "B+"),
+            ("B", "B"),
+            ("C+", "C+"),
+            ("C", "C"),
+            ("D", "D"),
+            ("F", "F"),
+        ),
     )
 
     def __str__(self) -> str:

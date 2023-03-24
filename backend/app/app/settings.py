@@ -35,7 +35,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "rest_framework_simplejwt",
     "core",
+    "user",
 ]
 
 MIDDLEWARE = [
@@ -105,6 +108,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "core.User"
 
 CORS_ALLOWED_ORIGINS = env("CORS_ALLOWED_ORIGINS").split(",")
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(",")
