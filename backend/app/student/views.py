@@ -3,14 +3,15 @@ from django.urls import reverse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import permissions
 
-from core import models
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from core import models, permissions
 from student import serializers
 
 
 class StudentListView(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsStudent,)
 
     def get(self, request, format=None):
         try:
@@ -50,7 +51,7 @@ class StudentListView(APIView):
 
 
 class StudentDetailView(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsStudent,)
 
     def get(self, request, id, format=None):
         try:
@@ -97,8 +98,12 @@ class StudentDetailView(APIView):
             )
 
 
+class StudentLoginView(TokenObtainPairView):
+    serializer_class = serializers.StudentTokenObtainPairSerializer
+
+
 class StudentProfileView(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsStudent,)
 
     def get(self, request, format=None):
         try:
@@ -134,7 +139,7 @@ class StudentProfileView(APIView):
 
 
 class StudentGradesView(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsStudent,)
 
     def get(self, request, format=None):
         try:

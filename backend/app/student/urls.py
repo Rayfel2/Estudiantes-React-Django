@@ -7,6 +7,7 @@ app_name = "student"
 urlpatterns = (
     path("", views.StudentListView.as_view(), name="list"),
     path("<int:id>/", views.StudentDetailView.as_view(), name="detail"),
+    path("login/", views.StudentLoginView.as_view(), name="login"),
     path("profile/", views.StudentProfileView.as_view(), name="profile"),
     path("profile/grades/", views.StudentGradesView.as_view(), name="grades"),
     # path(
