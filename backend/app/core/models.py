@@ -251,7 +251,7 @@ class AcademicCycle(models.Model):
         validators=[MinValueValidator(1)],
     )
     student = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        Student,
         verbose_name=_("student"),
         on_delete=models.CASCADE,
         related_name="academic_cycles",
@@ -260,6 +260,20 @@ class AcademicCycle(models.Model):
         verbose_name=_("taken credits"),
         default=0,
         validators=[MinValueValidator(0), MaxValueValidator(50)],
+    )
+    overall_gpa = models.DecimalField(
+        verbose_name=_("overall GPA"),
+        max_digits=3,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
+    )
+    last_gpa = models.DecimalField(
+        verbose_name=_("last GPA"),
+        max_digits=3,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
     )
 
     def __str__(self) -> str:
@@ -284,12 +298,6 @@ class SubjectStudentCycle(models.Model):
         on_delete=models.CASCADE,
         related_name="subject_student_cycles",
     )
-    student = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        verbose_name=_("student"),
-        on_delete=models.CASCADE,
-        related_name="subject_student_cycles",
-    )
     midterm_grade = models.DecimalField(
         verbose_name=_("mid-term grade"),
         max_digits=4,
@@ -307,6 +315,8 @@ class SubjectStudentCycle(models.Model):
     final_grade_letter = models.CharField(
         verbose_name=_("final grade letter"),
         max_length=2,
+        null=True,
+        blank=True,
         choices=(
             ("A", "A"),
             ("B+", "B+"),
@@ -317,23 +327,9 @@ class SubjectStudentCycle(models.Model):
             ("F", "F"),
         ),
     )
-    overall_gpa = models.DecimalField(
-        verbose_name=_("overall GPA"),
-        max_digits=3,
-        decimal_places=2,
-        default=0,
-        validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
-    )
-    last_gpa = models.DecimalField(
-        verbose_name=_("last GPA"),
-        max_digits=3,
-        decimal_places=2,
-        default=0,
-        validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
-    )
 
     def __str__(self) -> str:
-        return f"{self.subject.name} - {self.student.registration_number} - {self.cycle.year} - {self.cycle.cycle}"
+        return f"{self.subject.name} - {self.cycle.student.user.username} - {self.cycle.year} - {self.cycle.cycle}"
 
 
 class Message(models.Model):
