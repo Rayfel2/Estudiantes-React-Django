@@ -123,7 +123,6 @@ class User(AbstractUser, PermissionsMixin):
             MaxValueValidator(date.today()),
         ],
     )
-    is_admin = models.BooleanField(verbose_name=_("is admin"), default=False)
 
     objects = UserManager()
     USERNAME_FIELD = "username"
@@ -146,8 +145,8 @@ class Career(models.Model):
     id = models.BigAutoField(
         verbose_name=_("id"), primary_key=True, unique=True, editable=False
     )
-    name = models.CharField(verbose_name=_("name"), max_length=50)
     code = models.CharField(verbose_name=_("code"), max_length=10)
+    name = models.CharField(verbose_name=_("name"), max_length=255)
 
     def __str__(self) -> str:
         return self.name
@@ -228,8 +227,8 @@ class Subject(models.Model):
     id = models.BigAutoField(
         verbose_name=_("id"), primary_key=True, unique=True, editable=False
     )
-    name = models.CharField(verbose_name=_("name"), max_length=50)
     code = models.CharField(verbose_name=_("code"), max_length=10)
+    name = models.CharField(verbose_name=_("name"), max_length=50)
     is_lab = models.BooleanField(verbose_name=_("is lab"), default=False)
     credits = models.PositiveSmallIntegerField(
         verbose_name=_("credits"),
@@ -238,7 +237,7 @@ class Subject(models.Model):
     )
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.code} - {self.name}"
 
 
 class AcademicCycle(models.Model):
