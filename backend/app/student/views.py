@@ -113,3 +113,29 @@ class StudentProfileAcademicRecordView(APIView):
                 response,
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
+
+
+class StudentProfileSubjectsView(APIView):
+    serializer_class = serializers.StudentProfileSubjectsSerializer
+    permission_classes = (permissions.IsStudent,)
+
+    def post(self, request, format=None):
+        try:
+            data = request.data
+            serializer = self.serializer_class(data=data)
+            if not serializer.is_valid():
+                response = serializer.errors
+                return Response(
+                    response,
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            serializer.save()
+            response = serializer.data
+            return Response(response, status=status.HTTP_201_CREATED)
+        except Exception:
+            response = {"error": "Something went wrong"}
+            return Response(
+                response,
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
