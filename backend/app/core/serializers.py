@@ -95,7 +95,7 @@ class StudentGradesSerializer(serializers.ModelSerializer):
     subject = SubjectSerializer()
 
     class Meta:
-        model = models.SubjectStudentCycle
+        model = models.SubjectCycle
         fields = "__all__"
         read_only_fields = ("id",)
 
@@ -109,6 +109,32 @@ class StudentAcademicRecordSerializer(serializers.ModelSerializer):
 
 class StudentProfileSubjectsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.SubjectStudentCycle
+        model = models.SubjectCycle
         fields = ("id", "cycle", "subject")
         read_only_fields = ("id",)
+
+
+class CycleSubjectsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.SubjectCycle
+        fields = ("id", "cycle", "subject")
+        extra_kwargs = {
+            "cycle": {"required": False},
+        }
+        read_only_fields = ("id", "cycle")
+
+    def create(self, validated_data):
+        cycle = validated_data["cycle"]
+        subject = validated_data["subject"]
+
+        cycle.taken_credits += subject.credits
+        cycle.save()
+
+        return super().create(validated_data)
+
+    def delete(self, instance):
+        cycle = instance.cycle
+        cycle.taken_credits -= instance.subject.credits
+        cycle.save()
+
+        instance.delete()

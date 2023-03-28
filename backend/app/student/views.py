@@ -82,7 +82,7 @@ class StudentProfileGradesView(APIView):
     def get(self, request, format=None):
         try:
             student = request.user
-            grades = models.SubjectStudentCycle.objects.filter(
+            grades = models.SubjectCycle.objects.filter(
                 cycle__student__user=student
             )
             serializer = self.serializer_class(grades, many=True)

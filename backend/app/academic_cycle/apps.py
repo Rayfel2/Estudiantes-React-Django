@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CycleConfig(AppConfig):
+class AcademicCycleConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "cycle"
+    name = "academic_cycle"

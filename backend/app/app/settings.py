@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "rest_framework",
     "core",
-    "cycle",
+    "academic_cycle",
     "student",
 ]
 

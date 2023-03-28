@@ -284,7 +284,7 @@ class AcademicCycle(models.Model):
         return f"{self.student.user.username} - {self.year} - {self.cycle}"
 
 
-class SubjectStudentCycle(models.Model):
+class SubjectCycle(models.Model):
     """Subject student cycle model."""
 
     id = models.BigAutoField(
@@ -294,13 +294,13 @@ class SubjectStudentCycle(models.Model):
         AcademicCycle,
         verbose_name=_("academic cycle"),
         on_delete=models.CASCADE,
-        related_name="subject_student_cycles",
+        related_name="subject_cycles",
     )
     subject = models.ForeignKey(
         Subject,
         verbose_name=_("subject"),
         on_delete=models.CASCADE,
-        related_name="subject_student_cycles",
+        related_name="subject_cycles",
     )
     midterm_grade = models.DecimalField(
         verbose_name=_("mid-term grade"),
