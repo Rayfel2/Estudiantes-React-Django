@@ -338,6 +338,11 @@ class SubjectCycle(models.Model):
     def __str__(self) -> str:
         return f"{self.subject.name} - {self.cycle.student.user.username} - {self.cycle.year} - {self.cycle.cycle}"
 
+    def delete(self, *args, **kwargs):
+        self.cycle.taken_credits -= self.subject.credits
+        self.cycle.save()
+        super().delete(*args, **kwargs)
+
 
 class Message(models.Model):
     """Message model."""

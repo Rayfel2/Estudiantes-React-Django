@@ -106,6 +106,7 @@ class StudentAcademicRecordSerializer(serializers.ModelSerializer):
         exclude = ("student",)
         read_only_fields = ("id",)
 
+
 class CycleSubjectsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SubjectCycle
@@ -121,12 +122,4 @@ class CycleSubjectsSerializer(serializers.ModelSerializer):
 
         cycle.taken_credits += subject.credits
         cycle.save()
-
         return super().create(validated_data)
-
-    def delete(self, instance):
-        cycle = instance.cycle
-        cycle.taken_credits -= instance.subject.credits
-        cycle.save()
-
-        instance.delete()
