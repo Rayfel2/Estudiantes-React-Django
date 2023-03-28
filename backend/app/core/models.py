@@ -227,7 +227,7 @@ class Subject(models.Model):
     id = models.BigAutoField(
         verbose_name=_("id"), primary_key=True, unique=True, editable=False
     )
-    code = models.CharField(verbose_name=_("code"), max_length=10)
+    code = models.CharField(verbose_name=_("code"), max_length=10, unique=True)
     name = models.CharField(verbose_name=_("name"), max_length=50)
     is_lab = models.BooleanField(verbose_name=_("is lab"), default=False)
     credits = models.PositiveSmallIntegerField(
@@ -331,6 +331,9 @@ class SubjectCycle(models.Model):
             ("F", "F"),
         ),
     )
+
+    class Meta:
+        unique_together = ("cycle", "subject")
 
     def __str__(self) -> str:
         return f"{self.subject.name} - {self.cycle.student.user.username} - {self.cycle.year} - {self.cycle.cycle}"

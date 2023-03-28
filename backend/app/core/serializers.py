@@ -106,14 +106,6 @@ class StudentAcademicRecordSerializer(serializers.ModelSerializer):
         exclude = ("student",)
         read_only_fields = ("id",)
 
-
-class StudentProfileSubjectsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.SubjectCycle
-        fields = ("id", "cycle", "subject")
-        read_only_fields = ("id",)
-
-
 class CycleSubjectsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SubjectCycle

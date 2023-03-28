@@ -19,9 +19,4 @@ urlpatterns = (
         views.StudentProfileAcademicRecordView.as_view(),
         name="academic-record",
     ),
-    path(
-        "profile/subjects/",
-        views.StudentProfileSubjectsView.as_view(),
-        name="subjects",
-    ),
 )
