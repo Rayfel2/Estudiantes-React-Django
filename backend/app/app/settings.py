@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "core",
     "academic_cycle",
     "student",
+    "subject_cycle",
 ]
 
 REST_FRAMEWORK = {
