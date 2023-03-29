@@ -117,7 +117,12 @@ class User(AbstractUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name=_("email"), max_length=255, unique=True
     )
-    birth_date = models.DateField(verbose_name=_("birth date"))
+    birth_date = models.DateField(
+        verbose_name=_("birth date"),
+        validators=[
+            MaxValueValidator(date.today()),
+        ],
+    )
 
     objects = UserManager()
     USERNAME_FIELD = "username"
@@ -140,8 +145,8 @@ class Career(models.Model):
     id = models.BigAutoField(
         verbose_name=_("id"), primary_key=True, unique=True, editable=False
     )
-    name = models.CharField(verbose_name=_("name"), max_length=50)
     code = models.CharField(verbose_name=_("code"), max_length=10)
+    name = models.CharField(verbose_name=_("name"), max_length=255)
 
     def __str__(self) -> str:
         return self.name
@@ -167,22 +172,26 @@ class Student(models.Model):
     )
     income_year = models.PositiveSmallIntegerField(
         verbose_name=_("income year"),
+        default=2000,
         validators=[MinValueValidator(1900)],
     )
     income_cycle = models.PositiveSmallIntegerField(
         verbose_name=_("income cycle"),
+        default=1,
         validators=[MinValueValidator(1)],
     )
     overall_gpa = models.DecimalField(
         verbose_name=_("overall GPA"),
         max_digits=3,
         decimal_places=2,
+        default=0,
         validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
     )
     last_gpa = models.DecimalField(
         verbose_name=_("last GPA"),
         max_digits=3,
         decimal_places=2,
+        default=0,
         validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
     )
 
@@ -204,6 +213,7 @@ class Professor(models.Model):
     )
     income_year = models.PositiveSmallIntegerField(
         verbose_name=_("income year"),
+        default=2000,
         validators=[MinValueValidator(1900)],
     )
 
@@ -217,16 +227,23 @@ class Subject(models.Model):
     id = models.BigAutoField(
         verbose_name=_("id"), primary_key=True, unique=True, editable=False
     )
+    code = models.CharField(verbose_name=_("code"), max_length=10, unique=True)
     name = models.CharField(verbose_name=_("name"), max_length=50)
-    code = models.CharField(verbose_name=_("code"), max_length=10)
     is_lab = models.BooleanField(verbose_name=_("is lab"), default=False)
     credits = models.PositiveSmallIntegerField(
         verbose_name=_("credits"),
+        default=0,
         validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+    professor = models.ForeignKey(
+        Professor,
+        verbose_name=_("professor"),
+        on_delete=models.PROTECT,
+        related_name="subjects",
     )
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.code} - {self.name}"
 
 
 class AcademicCycle(models.Model):
@@ -244,21 +261,36 @@ class AcademicCycle(models.Model):
         validators=[MinValueValidator(1)],
     )
     student = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        Student,
         verbose_name=_("student"),
         on_delete=models.CASCADE,
         related_name="academic_cycles",
     )
     taken_credits = models.PositiveSmallIntegerField(
         verbose_name=_("taken credits"),
+        default=0,
         validators=[MinValueValidator(0), MaxValueValidator(50)],
+    )
+    overall_gpa = models.DecimalField(
+        verbose_name=_("overall GPA"),
+        max_digits=3,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
+    )
+    last_gpa = models.DecimalField(
+        verbose_name=_("last GPA"),
+        max_digits=3,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0.0), MaxValueValidator(4.0)],
     )
 
     def __str__(self) -> str:
         return f"{self.student.user.username} - {self.year} - {self.cycle}"
 
 
-class SubjectStudentCycle(models.Model):
+class SubjectCycle(models.Model):
     """Subject student cycle model."""
 
     id = models.BigAutoField(
@@ -268,35 +300,33 @@ class SubjectStudentCycle(models.Model):
         AcademicCycle,
         verbose_name=_("academic cycle"),
         on_delete=models.CASCADE,
-        related_name="subject_student_cycles",
+        related_name="subject_cycles",
     )
     subject = models.ForeignKey(
         Subject,
         verbose_name=_("subject"),
         on_delete=models.CASCADE,
-        related_name="subject_student_cycles",
-    )
-    student = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        verbose_name=_("student"),
-        on_delete=models.CASCADE,
-        related_name="subject_student_cycles",
+        related_name="subject_cycles",
     )
     midterm_grade = models.DecimalField(
         verbose_name=_("mid-term grade"),
         max_digits=4,
         decimal_places=2,
+        default=0,
         validators=[MinValueValidator(0.0), MaxValueValidator(70.0)],
     )
     final_grade = models.DecimalField(
         verbose_name=_("final grade"),
         max_digits=5,
         decimal_places=2,
+        default=0,
         validators=[MinValueValidator(0.0), MaxValueValidator(100.0)],
     )
     final_grade_letter = models.CharField(
         verbose_name=_("final grade letter"),
         max_length=2,
+        null=True,
+        blank=True,
         choices=(
             ("A", "A"),
             ("B+", "B+"),
@@ -308,8 +338,16 @@ class SubjectStudentCycle(models.Model):
         ),
     )
 
+    class Meta:
+        unique_together = ("cycle", "subject")
+
     def __str__(self) -> str:
-        return f"{self.subject.name} - {self.student.registration_number} - {self.cycle.year} - {self.cycle.cycle}"
+        return f"{self.subject.name} - {self.cycle.student.user.username} - {self.cycle.year} - {self.cycle.cycle}"
+
+    def delete(self, *args, **kwargs):
+        self.cycle.taken_credits -= self.subject.credits
+        self.cycle.save()
+        super().delete(*args, **kwargs)
 
 
 class Message(models.Model):
