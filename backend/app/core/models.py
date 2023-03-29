@@ -235,6 +235,12 @@ class Subject(models.Model):
         default=0,
         validators=[MinValueValidator(0), MaxValueValidator(10)],
     )
+    professor = models.ForeignKey(
+        Professor,
+        verbose_name=_("professor"),
+        on_delete=models.PROTECT,
+        related_name="subjects",
+    )
 
     def __str__(self) -> str:
         return f"{self.code} - {self.name}"

@@ -33,6 +33,6 @@ urlpatterns = [
         name="swagger-ui",
     ),
     path("api/v1/students/", include("student.urls")),
-    path("api/v1/cycles/academic/", include("academic_cycle.urls")),
-    path("api/v1/cycles/subject/", include("subject_cycle.urls")),
+    path("api/v1/academic-cycles/", include("academic_cycle.urls")),
+    path("api/v1/subject-cycles/", include("subject_cycle.urls")),
 ]
