@@ -1,0 +1,960 @@
+.estudiante {
+  position: absolute;
+  top: 43px;
+  left: 107px;
+  font-size: 27.15px;
+  color: var(--color-cornflowerblue);
+}
+.home,
+.queLesBrindamos,
+.sevicios {
+  position: absolute;
+  top: 49px;
+  left: 501px;
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.2px #000;
+}
+.queLesBrindamos,
+.sevicios {
+  left: 589px;
+}
+.sevicios {
+  top: 48px;
+  left: 775px;
+}
+.dotOrnamentIcon {
+  position: absolute;
+  top: 353px;
+  left: 0;
+  width: 404px;
+  height: 154px;
+}
+.heroHeadlineChild {
+  position: absolute;
+  top: 430px;
+  left: 1074px;
+  border-radius: 0 0 var(--br-81xl) 0;
+  background-color: var(--color-cornsilk);
+  width: 178px;
+  height: 178px;
+}
+.heroHeadlineItem,
+.image8Icon {
+  position: absolute;
+  top: 0;
+  left: 555px;
+  width: 129px;
+  height: 129px;
+}
+.image8Icon {
+  left: 618px;
+  border-radius: 0 0 0 var(--br-181xl);
+  width: 754px;
+  height: 512px;
+  object-fit: cover;
+}
+.calcularIndiceAcademico {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 457px;
+  height: 67px;
+  -webkit-text-stroke: 1px #000;
+}
+.unaAplicacinPara {
+  position: absolute;
+  top: 142px;
+  left: 3px;
+  font-size: var(--desktop-headlines-h5-size);
+  line-height: 160%;
+  color: var(--color-dimgray-100);
+  display: inline-block;
+  width: 471px;
+}
+.ctaContactNow {
+  width: 307px;
+  position: absolute;
+  top: 253px;
+  left: 4px;
+}
+.content,
+.heroHeadline {
+  position: absolute;
+  top: 70px;
+  left: 49px;
+  width: 474px;
+  height: 317px;
+}
+.heroHeadline {
+  top: 116px;
+  left: 68px;
+  width: 1372px;
+  height: 608px;
+  font-size: 52px;
+}
+.blankLine {
+  margin: 0;
+}
+.actividadEstudiantil {
+  position: absolute;
+  top: 735px;
+  left: 570px;
+  font-size: var(--font-size-21xl);
+  -webkit-text-stroke: 1px #000;
+}
+.howCanWeHelpChild {
+  position: absolute;
+  top: 711px;
+  left: 1095px;
+  width: 120px;
+  height: 120px;
+}
+.howCanWeHelpItem {
+  position: absolute;
+  top: 644px;
+  left: 43px;
+  width: 405px;
+  height: 154px;
+}
+.howCanWeHelpInner,
+.rectangleDiv {
+  position: absolute;
+  top: 140px;
+  left: 311px;
+  border-radius: var(--br-131xl) 0 0 0;
+  background-color: var(--color-aliceblue-100);
+  width: 1047px;
+  height: 619px;
+}
+.rectangleDiv {
+  top: 478px;
+  left: 178px;
+  border-radius: 0 0 var(--br-81xl) 0;
+  background-color: var(--color-cornsilk);
+  width: 178px;
+  height: 178px;
+  transform: rotate(-180deg);
+  transform-origin: 0 0;
+}
+.quePodemosBrindarles {
+  align-self: stretch;
+  position: relative;
+  -webkit-text-stroke: 1px #000;
+}
+.loremIpsumDolor {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--desktop-headlines-h5-size);
+  line-height: 160%;
+  color: var(--color-dimgray-100);
+}
+.quePodemosBrindarlesParent {
+  position: absolute;
+  top: 360px;
+  left: 38px;
+  width: 396px;
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-0) var(--padding-0) var(--padding-0) 1px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 30px;
+  text-align: left;
+  font-size: var(--font-size-21xl);
+  color: var(--color-black);
+}
+.loremIpsumDolor1 {
+  position: absolute;
+  top: 191px;
+  left: 70px;
+  font-size: var(--font-size-5xl);
+  color: var(--color-black);
+  display: inline-block;
+  width: 167px;
+  -webkit-text-stroke: 0.3px #000;
+}
+.frameChild {
+  position: absolute;
+  top: 39px;
+  left: 94px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-aliceblue-300);
+  width: 121px;
+  height: 121px;
+}
+.wePresentYou {
+  position: absolute;
+  top: 278px;
+  left: 31px;
+  line-height: 140%;
+  display: inline-block;
+  width: 245px;
+}
+.boxSearch1Icon {
+  position: absolute;
+  top: 63px;
+  left: 118px;
+  width: 74px;
+  height: 74px;
+  overflow: hidden;
+}
+.loremIpsumDolorSitParent {
+  position: absolute;
+  top: 79px;
+  left: 525px;
+  border-radius: var(--br-21xl);
+  background-color: var(--palette-white-900);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-whitesmoke-200);
+  box-sizing: border-box;
+  width: 308px;
+  height: 379px;
+}
+.frameItem {
+  position: absolute;
+  top: 39px;
+  left: 94px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-oldlace);
+  width: 121px;
+  height: 121px;
+}
+.laMejoraContinua {
+  position: absolute;
+  top: 176px;
+  left: 55px;
+  font-size: var(--font-size-5xl);
+  color: var(--color-black);
+  display: inline-block;
+  width: 199px;
+  -webkit-text-stroke: 0.3px #000;
+}
+.ic20TrophyIcon {
+  position: absolute;
+  height: 19.53%;
+  width: 24.03%;
+  top: 16.36%;
+  right: 37.66%;
+  bottom: 64.12%;
+  left: 38.31%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.rectangleParent {
+  position: absolute;
+  top: 0;
+  left: 867px;
+  border-radius: var(--br-21xl);
+  background-color: var(--palette-white-900);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-whitesmoke-200);
+  box-sizing: border-box;
+  width: 308px;
+  height: 379px;
+}
+.frameInner {
+  position: absolute;
+  top: 39px;
+  left: 94px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-honeydew);
+  width: 121px;
+  height: 121px;
+}
+.registroDeLas {
+  position: absolute;
+  top: 191px;
+  left: 38px;
+  font-size: var(--font-size-5xl);
+  color: var(--color-black);
+  display: inline-block;
+  width: 231px;
+  -webkit-text-stroke: 0.3px #000;
+}
+.rectangleGroup {
+  position: absolute;
+  top: 409px;
+  left: 867px;
+  border-radius: var(--br-21xl);
+  background-color: var(--palette-white-900);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-whitesmoke-200);
+  box-sizing: border-box;
+  width: 308px;
+  height: 379px;
+}
+.frameChild1 {
+  position: absolute;
+  top: 39px;
+  left: 94px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-lavenderblush-100);
+  width: 121px;
+  height: 121px;
+}
+.estudiantePuedeRetirar {
+  position: absolute;
+  top: 191px;
+  left: 34px;
+  font-size: var(--font-size-5xl);
+  color: var(--color-black);
+  display: inline-block;
+  width: 239px;
+  -webkit-text-stroke: 0.3px #000;
+}
+.rectangleContainer {
+  position: absolute;
+  top: 488px;
+  left: 525px;
+  border-radius: var(--br-21xl);
+  background-color: var(--palette-white-900);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-whitesmoke-200);
+  box-sizing: border-box;
+  width: 308px;
+  height: 379px;
+}
+.howCanWeHelp {
+  position: absolute;
+  top: 982px;
+  left: 82px;
+  width: 1358px;
+  height: 867px;
+  text-align: center;
+  color: var(--color-gray-400);
+}
+.quePodemosBrindarles1 {
+  position: absolute;
+  top: 1342px;
+  left: 121px;
+  font-size: var(--font-size-21xl);
+  display: inline-block;
+  width: 358px;
+  -webkit-text-stroke: 1px #000;
+}
+.wePresentYou2 {
+  position: absolute;
+  top: 1339px;
+  left: 638px;
+  line-height: 140%;
+  color: var(--color-gray-400);
+  text-align: center;
+  display: inline-block;
+  width: 245px;
+}
+.greatSinceChild,
+.greatSinceItem {
+  position: absolute;
+  top: 307px;
+  left: 462px;
+  width: 129px;
+  height: 129px;
+}
+.greatSinceItem {
+  top: 58px;
+  left: 630px;
+  border-radius: 0 0 var(--br-81xl) 0;
+  background-color: var(--color-ghostwhite-400);
+  width: 178px;
+  height: 178px;
+}
+.ourBusinessPlan,
+.unaBuenaGestion {
+  position: absolute;
+  display: inline-block;
+}
+.ourBusinessPlan {
+  top: 210px;
+  left: 668px;
+  line-height: 160%;
+  width: 532px;
+}
+.unaBuenaGestion {
+  top: 82px;
+  left: 669px;
+  font-size: var(--font-size-21xl);
+  color: var(--color-black);
+  width: 468px;
+  -webkit-text-stroke: 1px #000;
+}
+.unsplashbzqu01vG54Icon {
+  position: absolute;
+  top: -30px;
+  left: -40px;
+  border-radius: var(--br-13xl);
+  width: 650px;
+  height: 472px;
+  object-fit: cover;
+}
+.greatSince {
+  position: absolute;
+  top: 1995px;
+  left: 120px;
+  width: 1200px;
+  height: 436px;
+  color: var(--color-dimgray-100);
+}
+.dotIcon {
+  position: absolute;
+  top: 166px;
+  left: 240px;
+  width: 196px;
+  height: 154px;
+}
+.happyClientChild {
+  position: absolute;
+  top: 465px;
+  left: 0;
+  width: 120px;
+  height: 120px;
+}
+.unsplashmtztgvdshfyIcon {
+  position: absolute;
+  top: 178px;
+  left: -30px;
+  border-radius: var(--br-481xl) 0 var(--br-481xl) var(--br-481xl);
+  width: 489px;
+  height: 489px;
+  object-fit: cover;
+}
+.variosEstudiantesSeleccionad {
+  position: absolute;
+  top: 58px;
+  left: 309px;
+  line-height: 160%;
+  color: var(--color-gray-400);
+  display: inline-block;
+  width: 614px;
+  height: 34px;
+}
+.loQueDicen {
+  position: absolute;
+  top: 0;
+  left: 301px;
+  font-size: var(--font-size-21xl);
+  -webkit-text-stroke: 1px #000;
+}
+.matthewPaul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-text-stroke: 0.4px #000;
+}
+.perfectoAhoraPuedo {
+  position: absolute;
+  top: 51px;
+  left: 8px;
+  font-size: var(--desktop-headlines-h5-size);
+  line-height: 160%;
+  color: var(--color-dimgray-100);
+  text-align: left;
+  display: inline-block;
+  width: 408px;
+  height: 134px;
+}
+.ellipseFormcheck,
+.frameChild2 {
+  position: absolute;
+  top: 305px;
+  left: 8px;
+}
+.frameChild2 {
+  left: 50px;
+}
+.frameChild3,
+.frameChild4,
+.frameChild5 {
+  position: absolute;
+  top: 305px;
+  left: 92px;
+}
+.frameChild4,
+.frameChild5 {
+  left: 134px;
+}
+.frameChild5 {
+  left: 176px;
+}
+.happyClient,
+.matthewPaulParent {
+  position: absolute;
+  top: 292px;
+  left: 458px;
+  width: 416px;
+  height: 321px;
+  font-size: var(--font-size-5xl);
+}
+.happyClient {
+  top: 2548px;
+  left: 107px;
+  width: 923px;
+  height: 613px;
+  text-align: center;
+  font-size: var(--font-size-lg);
+}
+.dotIcon1,
+.newsletterChild {
+  position: absolute;
+  top: 0;
+  left: 1097px;
+  width: 175px;
+  height: 154px;
+}
+.newsletterChild {
+  top: 209px;
+  left: 178px;
+  border-radius: 0 0 var(--br-81xl) 0;
+  background-color: var(--color-cornsilk);
+  width: 178px;
+  height: 178px;
+  transform: rotate(90deg);
+  transform-origin: 0 0;
+}
+.newsletterInner,
+.newsletterItem {
+  position: absolute;
+  top: 56px;
+  height: 292px;
+}
+.newsletterItem {
+  left: 38px;
+  border-radius: var(--br-56xl);
+  background-color: var(--color-aliceblue-200);
+  width: 1197px;
+}
+.newsletterInner {
+  left: 738.75px;
+  width: 543px;
+}
+.newsletterChild1 {
+  position: absolute;
+  top: 162px;
+  left: 928px;
+  border-radius: var(--br-41xl);
+  background-color: var(--palette-white-900);
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--color-whitesmoke-300);
+  box-sizing: border-box;
+  width: 215px;
+  height: 79px;
+}
+.frameButton {
+  width: 197px;
+  position: absolute;
+  top: 172px;
+  left: 937px;
+}
+.loremIpsumDolor2 {
+  position: absolute;
+  top: 220px;
+  left: 130px;
+  line-height: 160%;
+  display: inline-block;
+  width: 588px;
+}
+.registrate {
+  position: absolute;
+  top: 154px;
+  left: 130px;
+  font-size: var(--font-size-21xl);
+  color: var(--color-black);
+  -webkit-text-stroke: 1px #000;
+}
+.newsletter {
+  position: absolute;
+  top: 3237px;
+  left: 82px;
+  width: 1272px;
+  height: 387px;
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-400);
+}
+.estudiante1 {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  font-size: var(--font-size-5xl);
+}
+.contactos,
+.queLesBrindamos1,
+.soporte {
+  position: absolute;
+  -webkit-text-stroke: 0.4px #000;
+}
+.queLesBrindamos1 {
+  top: 63px;
+  left: 461px;
+  font-size: var(--desktop-headlines-h5-size);
+  letter-spacing: 0.01em;
+}
+.contactos,
+.soporte {
+  top: 60px;
+  left: 696px;
+  font-size: var(--font-size-xl);
+}
+.contactos {
+  left: 876px;
+}
+.webDesignAppContainer {
+  position: absolute;
+  top: 112px;
+  left: 461px;
+  line-height: 200%;
+}
+.faqPolicyBusinessContainer,
+.whatsappSupport24Container {
+  position: absolute;
+  top: 109px;
+  left: 696px;
+  line-height: 200%;
+}
+.whatsappSupport24Container {
+  left: 876px;
+}
+.footerChild {
+  position: absolute;
+  top: -0.5px;
+  left: -0.5px;
+  border-top: 1px solid var(--color-gainsboro-100);
+  box-sizing: border-box;
+  width: 1201px;
+  height: 1px;
+}
+.footer {
+  position: absolute;
+  top: 3731px;
+  left: 120px;
+  width: 1200px;
+  height: 349px;
+  font-size: var(--component-body-semibold-size);
+}
+.button {
+  flex: 1;
+  position: relative;
+}
+.loginSignUp {
+  position: absolute;
+  top: calc(50% - 2015px);
+  right: 41px;
+  width: 271px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-base);
+}
+.checkIcon,
+.checkIcon1 {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.checkIcon1 {
+  width: 14px;
+  height: 14px;
+}
+.base,
+.basecheckbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.base {
+  border-radius: var(--br-9xs);
+  background-color: var(--primary-shape);
+  border: 1px solid var(--neutrals-border);
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.basecheckbox {
+  height: 100%;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+}
+.basecheckboxstates {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: none;
+}
+.content2,
+.options {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.content2 {
+  align-self: stretch;
+  align-items: center;
+}
+.baseDropdownlist {
+  border-radius: var(--br-9xs);
+  padding: var(--padding-5xs);
+}
+.baseDropdownlist,
+.baseDropdownlistSelectsimple,
+.slotexempleSelectsimplegroup {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.slotexempleSelectsimplegroup {
+  gap: var(--gap-9xs);
+}
+.bookmarkIcon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: none;
+}
+.label4 {
+  position: relative;
+  line-height: 100%;
+  font-weight: 600;
+}
+.buttonbase,
+.content6 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.content6 {
+  height: 16px;
+  gap: var(--gap-5xs);
+}
+.buttonbase {
+  flex: 1;
+  border-radius: var(--br-7xs);
+  background-color: var(--palette-white-900);
+  border: 1px solid var(--neutrals-border);
+  overflow: hidden;
+  padding: var(--padding-5xs) var(--padding-xs);
+}
+.tertiaryButton {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.buttonbase1,
+.primaryButton,
+.tertiaryButton {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+.buttonbase1 {
+  border-radius: var(--br-7xs);
+  background-color: var(--primary-shape);
+  overflow: hidden;
+  padding: var(--padding-5xs) var(--padding-xs);
+  align-items: center;
+  justify-content: center;
+}
+.primaryButton {
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: var(--palette-white-900);
+}
+.basedropdowbuttongroup,
+.content1 {
+  align-self: stretch;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.basedropdowbuttongroup {
+  display: none;
+  flex-direction: row;
+  gap: var(--gap-5xs);
+  text-align: center;
+  font-size: var(--component-body-semibold-size);
+  color: var(--neutrals-text-tertiary);
+  font-family: var(--component-body-semibold);
+}
+.content1 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-base);
+}
+.dropdown,
+.dropdownWrapper {
+  position: absolute;
+  left: 0;
+  width: 176px;
+  height: 153px;
+}
+.dropdown {
+  top: 0;
+  border-radius: var(--br-9xs);
+  background-color: var(--palette-white-900);
+  border: 1px solid var(--neutrals-border);
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-3xs);
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.dropdownWrapper {
+  top: 25px;
+}
+.dropdownFormselect,
+.groupParent {
+  width: 127px;
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
+.groupParent {
+  top: 43px;
+  left: 944px;
+  width: 176px;
+  height: 178px;
+  font-size: var(--regular-13-size);
+  color: var(--color-cornflowerblue);
+}
+.vectorIcon {
+  position: absolute;
+  height: 1.32%;
+  width: 3.75%;
+  top: 20.19%;
+  right: 74.38%;
+  bottom: 78.5%;
+  left: 21.88%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.label6 {
+  cursor: pointer;
+  position: absolute;
+  top: 891px;
+  left: 311px;
+  font-size: var(--font-size-5xl);
+  text-align: center;
+  -webkit-text-stroke: 0.4px #000;
+}
+.estudiantesGraduados {
+  position: absolute;
+  top: 920px;
+  left: 252px;
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.2px #000;
+}
+.vectorIcon2 {
+  position: absolute;
+  height: 1.32%;
+  width: 3.75%;
+  top: 20.21%;
+  right: 56.32%;
+  bottom: 78.47%;
+  left: 39.93%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.profesoresRegistrados {
+  position: absolute;
+  top: 921px;
+  left: 511px;
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.2px #000;
+}
+.label8 {
+  cursor: pointer;
+  position: absolute;
+  top: 892px;
+  left: 567px;
+  font-size: var(--font-size-5xl);
+  text-align: center;
+  -webkit-text-stroke: 0.4px #000;
+}
+.materiasDisponibles {
+  position: absolute;
+  top: 916px;
+  left: 844px;
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.2px #000;
+}
+.label9 {
+  cursor: pointer;
+  position: absolute;
+  top: 887px;
+  left: 900px;
+  font-size: var(--font-size-5xl);
+  text-align: center;
+  -webkit-text-stroke: 0.4px #000;
+}
+.reportesRealizados {
+  position: absolute;
+  top: 916px;
+  left: 1128px;
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.2px #000;
+}
+.label10 {
+  cursor: pointer;
+  position: absolute;
+  top: 887px;
+  left: 1188px;
+  font-size: var(--font-size-5xl);
+  text-align: center;
+  -webkit-text-stroke: 0.4px #000;
+}
+.checkIcon8,
+.receiptLongIcon {
+  position: absolute;
+  top: 819px;
+  left: 902px;
+  width: 65px;
+  height: 65px;
+  overflow: hidden;
+}
+.receiptLongIcon {
+  top: 816px;
+  left: 1181px;
+  width: 68px;
+  height: 68px;
+}
+.landingPageHome1 {
+  text-decoration: none;
+  position: relative;
+  background-color: var(--color-gray-100);
+  width: 1440px;
+  height: 4102px;
+  flex-shrink: 0;
+  overflow: hidden;
+  color: inherit;
+}
+.landingPageHome {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  font-size: var(--desktop-headlines-h5-size);
+  color: var(--color-black);
+  font-family: var(--font-montserrat);
+}

@@ -1,0 +1,220 @@
+.verPerfilChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 2px;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--stroke);
+  box-sizing: border-box;
+  width: 967px;
+  height: 698px;
+}
+.groupChild {
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 47.36px;
+  left: 0;
+  width: 881.86px;
+  height: 64.45px;
+}
+.cumpleaos {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  line-height: 22px;
+  font-weight: 500;
+  display: inline-block;
+  width: 104px;
+  height: 27px;
+}
+.groupContainer {
+  top: 286.11px;
+  width: 881.86px;
+  height: 111.81px;
+}
+.email,
+.groupContainer,
+.groupItem {
+  position: absolute;
+  left: 0;
+}
+.groupItem {
+  border: 0;
+  background-color: transparent;
+  top: 47.64px;
+  width: 881.86px;
+  height: 64.45px;
+}
+.email {
+  top: 0;
+  line-height: 22px;
+  font-weight: 500;
+  display: inline-block;
+  width: 62.34px;
+  height: 30.82px;
+}
+.groupDiv,
+.groupInner {
+  position: absolute;
+  top: 142.92px;
+  left: 0.57px;
+  width: 881.86px;
+  height: 112.09px;
+}
+.groupInner {
+  border: 0;
+  background-color: transparent;
+  top: 48.11px;
+  left: 15.97px;
+  width: 256.95px;
+  height: 64.45px;
+}
+.apellido {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 22px;
+  font-weight: 500;
+  display: inline-block;
+  width: 89.71px;
+  height: 30.82px;
+}
+.groupInput,
+.groupParent1 {
+  position: absolute;
+  top: 0;
+  left: 221.03px;
+  width: 272.92px;
+  height: 112.56px;
+}
+.groupInput {
+  border: 0;
+  background-color: transparent;
+  top: 47.64px;
+  left: 0;
+  width: 208.3px;
+  height: 64.45px;
+}
+.groupChild1,
+.groupParent2 {
+  position: absolute;
+  top: 0;
+  left: 0.57px;
+  width: 208.3px;
+  height: 112.09px;
+}
+.groupChild1 {
+  border: 0;
+  background-color: transparent;
+  top: 47.64px;
+  left: 0;
+  width: 363.39px;
+  height: 64.45px;
+}
+.groupParent3,
+.id {
+  position: absolute;
+  top: 0;
+}
+.id {
+  left: 0;
+  line-height: 22px;
+  font-weight: 500;
+  display: inline-block;
+  width: 167.25px;
+  height: 30.82px;
+}
+.groupParent3 {
+  left: 519.04px;
+  width: 363.39px;
+  height: 112.09px;
+}
+.regresar {
+  position: relative;
+  font-size: var(--desktop-headlines-h5-size);
+  line-height: 24px;
+  font-weight: 500;
+  font-family: var(--font-montserrat);
+  color: var(--gray);
+  text-align: center;
+}
+.frameWrapper,
+.regresarWrapper {
+  cursor: pointer;
+  border: 0;
+  position: absolute;
+  width: 881px;
+  height: 79px;
+}
+.regresarWrapper {
+  padding: var(--padding-5xs) 25px;
+  background-color: var(--primary);
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+.frameWrapper {
+  padding: 0;
+  background-color: transparent;
+  top: 428.11px;
+  left: 1px;
+}
+.configuracion,
+.groupParent {
+  position: absolute;
+  top: 114.89px;
+  left: 42px;
+  width: 882.43px;
+  height: 507.11px;
+}
+.configuracion {
+  top: 21.02px;
+  left: 42.57px;
+  font-size: var(--desktop-headlines-h5-size);
+  line-height: 24px;
+  font-weight: 500;
+  display: inline-block;
+  width: 174.85px;
+  height: 33.63px;
+}
+.verPerfilItem {
+  position: absolute;
+  top: 75.16px;
+  left: -0.5px;
+  border-top: 1px solid var(--stroke);
+  box-sizing: border-box;
+  width: 968px;
+  height: 1px;
+}
+.verPerfil1 {
+  position: absolute;
+  top: 268px;
+  left: 380px;
+  width: 967px;
+  height: 698px;
+}
+.estudiante {
+  position: absolute;
+  top: 119px;
+  left: 649px;
+  font-size: 64px;
+  color: var(--color-cornflowerblue);
+}
+.verPerfil {
+  position: relative;
+  background-color: var(--color-gray-100);
+  width: 100%;
+  height: 1233px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--desktop-body-button-button-text-small-size);
+  color: var(--dark);
+  font-family: var(--font-montserrat);
+}
