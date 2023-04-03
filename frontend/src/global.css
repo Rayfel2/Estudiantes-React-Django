@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-poppins: Poppins;
+  --font-montserrat: Montserrat;
+  --font-roboto: Roboto;
+  --font-open-sans: "Open Sans";
+  --desktop-body-button-button-text-small: Archivo;
+  --typography-label-large: "Readex Pro";
+  --subheadline-16: Inter;
+  --font-museomoderno: MuseoModerno;
+
+  /* font sizes */
+  --desktop-headlines-h5-size: 16px;
+  --font-size-lg: 18px;
+  --desktop-body-button-button-text-small-size: 14px;
+  --font-size-xl: 20px;
+  --font-size-5xl: 24px;
+  --font-size-21xl: 40px;
+  --font-size-17xl: 36px;
+  --font-size-xs: 12px;
+  --font-size-3xs: 10px;
+  --font-size-4xs: 9px;
+  --font-size-2xs: 11px;
+  --font-size-41xl: 60px;
+  --font-size-smi: 13px;
+  --font-size-5xs: 8px;
+  --font-size-10xl: 29px;
+
+  /* Colors */
+  --color-gray-100: #fbfbfb;
+  --color-gray-200: #fafafa;
+  --color-gray-400: #757575;
+  --dark: #1c2434;
+  --color-gray-300: #1c1f37;
+  --satu: #212121;
+  --neutrals-text-primary: #11151f;
+  --color-gray-500: #111;
+  --color-cornflowerblue: #009ef7;
+  --color-dimgray-100: #666;
+  --color-dimgray: #5a6474;
+  --color-dimgray-200: #565656;
+  --color-dimgray-300: rgba(102, 102, 102, 0.25);
+  --color-dimgray-400: rgba(102, 102, 102, 0.8);
+  --color-dimgray-500: rgba(102, 102, 102, 0.35);
+  --white: #fff;
+  --color-crimson: #ee1d52;
+  --x2: #f3f6f9;
+  --abuabu: #f5f5f5;
+  --color-whitesmoke-200: #f2f2f2;
+  --color-whitesmoke-300: #f1f1f1;
+  --color-whitesmoke-100: #eee;
+  --x3: #e5eaee;
+  --color-black: #000;
+  --color-aliceblue-100: #f1f7ff;
+  --gray: #eff4fb;
+  --stroke: #e2e8f0;
+  --color-cornsilk: #fff5db;
+  --primary: #3c50e0;
+  --light-version-neutral-blue-gray-600: #475569;
+  --palette-blue-gray-700: #334155;
+  --color-darkslategray-100: #333;
+  --color-lavender: #e7e7ff;
+  --schemas-jnt-secondary-dark-color-old: #e6e9fa;
+  --color-midnightblue-200: #00227b;
+  --color-midnightblue-100: #021442;
+  --dua: #00ace8;
+  --blue-blue-500: #3b82f6;
+  --color-royalblue: #017efa;
+  --light-version-neutral-blue-gray-500: #64748b;
+  --color-slategray-100: #65708d;
+  --yellow-yellow-400: #facc15;
+  --text: #9592a6;
+  --headline: #333269;
+  --color-silver-100: #c4c4c4;
+  --abupeteng: #bfbfbf;
+  --color-lightgray-100: #d6d6d6;
+  --color-lightgray-200: #d0d5dd;
+  --color-salmon: #ff6a6a;
+  --color-limegreen: #34c759;
+  --color-mediumaquamarine: #9ee8b1;
+  --color-tomato: #ff5050;
+
+  /* Gaps */
+  --gap-5xs: 8px;
+  --gap-9xs: 4px;
+  --gap-11xs: 2px;
+  --gap-base: 16px;
+
+  /* Paddings */
+  --padding-5xs: 8px;
+  --padding-xl: 20px;
+  --padding-21xl: 40px;
+  --padding-base: 16px;
+  --padding-xs: 12px;
+  --padding-sm: 14px;
+
+  /* border radiuses */
+  --br-5xl: 24px;
+  --br-base: 16px;
+  --br-13xl: 32px;
+  --br-41xl: 60px;
+  --br-81xl: 100px;
+  --br-481xl: 500px;
+  --br-xl: 20px;
+  --br-21xl: 40px;
+  --br-11xl: 30px;
+  --br-xs: 12px;
+  --br-5xs: 8px;
+  --br-31xl: 50px;
+  --br-16xl: 35px;
+  --br-2xs: 11px;
+  --br-71xl: 90px;
+  --br-6xs: 7px;
+
+  /* Effects */
+  --shadow-1: 10px 20px 50px rgba(0, 0, 0, 0.15);
+  --shadow: 0px 8px 13px -3px rgba(0, 0, 0, 0.07);
+}
