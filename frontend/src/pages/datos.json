@@ -1,0 +1,142 @@
+{
+  "Materia_Usuario_Ciclo": [
+    {
+      "id": 1,
+      "cycle_id": 1,
+      "subject_id": 1,
+      "student_id": 1,
+      "midterm_grade": 30,
+      "final_grade": 89,
+      "final_grade_letter": "B+"
+    },
+    {
+      "id": 2,
+      "cycle_id": 1,
+      "subject_id": 2,
+      "student_id": 1,
+      "midterm_grade": 40,
+      "final_grade": 80,
+      "final_grade_letter": "B"
+    },
+    {
+      "id": 3,
+      "cycle_id": 1,
+      "subject_id": 3,
+      "student_id": 1,
+      "midterm_grade": 40,
+      "final_grade": 90,
+      "final_grade_letter": "A"
+    },
+    {
+      "id": 4,
+      "cycle_id": 1,
+      "subject_id": 4,
+      "student_id": 1,
+      "midterm_grade": 60,
+      "final_grade": 95,
+      "final_grade_letter": "A"
+    },
+    {
+      "id": 5,
+      "cycle_id": 1,
+      "subject_id": 5,
+      "student_id": 1,
+      "midterm_grade": 30,
+      "final_grade": 79,
+      "final_grade_letter": "C+"
+    }
+  ],
+  "Subject": [
+    {
+      "id": 1,
+      "code": "BD",
+      "name": "BASES DE DATO...",
+      "is_lab": false,
+      "credits": 4
+    },
+    {
+      "id": 2,
+      "code": "BDL",
+      "name": "LAB BASES DE...",
+      "is_lab": true,
+      "credits": 1
+    },
+    {
+      "id": 3,
+      "code": "AG",
+      "name": "ALGEBRA Y GEO...",
+      "is_lab": false,
+      "credits": 5
+    },
+    {
+      "id": 4,
+      "code": "CE",
+      "name": "CIUDADANIA Y...",
+      "is_lab": false,
+      "credits": 2
+    },
+    {
+      "id": 5,
+      "code": "AC",
+      "name": "ASEGURAMIENTO...",
+      "is_lab": false,
+      "credits": 4
+    }
+  ],
+  "Estudiante": [
+    {
+      "id": 1,
+      "person_id": 1,
+      "registration_number": 1234,
+      "career_id": 1,
+      "email": "usuario@email.com",
+      "income_year": 5000,
+      "income_cycle ": 12,
+      "overall_gpa": 3.50,
+      "last_gpa": 4.00
+    }
+  ],
+  "Person": [
+    {
+      "id": 1,
+      "document_type": 1,
+      "document_no": "D1",
+      "first_name": "Francia",
+      "last_name": "Mejia",
+      "email": "usuario@email.com",
+      "password": "usuario",
+      "birth_date": "2003-03-30",
+      "is_admin": false
+    }
+  ],
+  "AcademicCycle": [
+    {
+      "id": 1,
+      "year": 2022,
+      "cycle": 1,
+      "student_id": 1,
+      "taken_credits": 16
+    },
+    {
+      "id": 2,
+      "year": 2022,
+      "cycle": 2,
+      "student_id": 1,
+      "taken_credits": 18
+    },
+    {
+      "id": 3,
+      "year": 2023,
+      "cycle": 1,
+      "student_id": 1,
+      "taken_credits": 14
+    },
+    {
+      "id": 4,
+      "year": 2023,
+      "cycle": 2,
+      "student_id": 1,
+      "taken_credits": 15
+    }
+  ]
+}
