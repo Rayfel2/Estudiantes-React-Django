@@ -40,16 +40,9 @@ class CycleSubjectDetailView(APIView):
             cycle = models.SubjectCycle.objects.get(
                 id=id, cycle__student__user=user
             )
-            data = {"final_grade_letter": "R"}
-            serializer = self.serializer_class(cycle, data=data, partial=True)
-            if not serializer.is_valid():
-                response = serializer.errors
-                return Response(
-                    response,
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
+            cycle.final_grade_letter = "R"
+            cycle.save()
 
-            serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except models.SubjectCycle.DoesNotExist:
             response = {"error": "Subject cycle does not exist"}

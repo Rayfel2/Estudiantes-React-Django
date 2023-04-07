@@ -83,7 +83,18 @@ class AcademicCycleSerializer(serializers.ModelSerializer):
         }
 
 
+class ProfessorSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = models.Professor
+        fields = "__all__"
+        read_only_fields = ("id",)
+
+
 class SubjectSerializer(serializers.ModelSerializer):
+    professor = ProfessorSerializer()
+
     class Meta:
         model = models.Subject
         fields = "__all__"
