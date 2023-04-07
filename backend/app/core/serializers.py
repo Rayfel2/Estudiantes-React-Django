@@ -166,10 +166,20 @@ class ProfessorViewSerializer(serializers.ModelSerializer):
         read_only_fields = ("id",)
 
 class ProfessorGradeSerializer(serializers.ModelSerializer):
-    cycle = AcademicSerializer()
-    subject = SubjectSerializer()
+    midterm_grade = serializers.DecimalField(max_digits=5, decimal_places=2)
+    final_grade = serializers.DecimalField(max_digits=5, decimal_places=2)
 
     class Meta:
         model = models.SubjectCycle
-        fields = "__all__"
-        read_only_fields = ("id",)
+        exclude = ("subject" , "cycle")
+        read_only_fields = ("id", "final_grade_letter")
+        
+
+class ProfessorGradeReviewSerializer(serializers.ModelSerializer):
+    final_grade = serializers.DecimalField(max_digits=5, decimal_places=2)
+
+    class Meta:
+        model = models.SubjectCycle
+        exclude = ("subject" , "cycle")
+        read_only_fields = ("id", "final_grade_letter")
+
