@@ -123,3 +123,53 @@ class CycleSubjectsSerializer(serializers.ModelSerializer):
         cycle.taken_credits += subject.credits
         cycle.save()
         return super().create(validated_data)
+    
+class ProfessorTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        try:
+            data = super().validate(attrs)
+            user = self.user
+
+            models.Professor.objects.get(user=user)
+            return data
+        except models.Professor.DoesNotExist:
+            raise exceptions.AuthenticationFailed(
+                self.error_messages["no_active_account"],
+                "no_active_account",
+            )
+    
+class ProfessorSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = models.Professor
+        fields = "__all__"
+        read_only_fields = (
+            "id",
+            "income_year",
+        )
+
+class AcademicSerializer(serializers.ModelSerializer):
+    student = StudentSerializer()
+    class Meta:
+        model = models.AcademicCycle
+        fields = "__all__"
+
+
+class ProfessorViewSerializer(serializers.ModelSerializer):
+    cycle = AcademicSerializer()
+    subject = SubjectSerializer()
+
+    class Meta:
+        model = models.SubjectCycle
+        fields = "__all__"
+        read_only_fields = ("id",)
+
+class ProfessorGradeSerializer(serializers.ModelSerializer):
+    cycle = AcademicSerializer()
+    subject = SubjectSerializer()
+
+    class Meta:
+        model = models.SubjectCycle
+        fields = "__all__"
+        read_only_fields = ("id",)
