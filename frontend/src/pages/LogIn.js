@@ -1,6 +1,7 @@
 import styles from "./LogIn.module.css";
 import React, { useState } from 'react';
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 
 
 const LogIn = () => {
@@ -11,6 +12,7 @@ const LogIn = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showButton, setShowButton] = useState(true);
 
+  const navigate = useNavigate();
 
 
   const handleEmailChange = (e) => {
@@ -23,15 +25,15 @@ const LogIn = () => {
   const handleLogin = async (e) => {
   e.preventDefault();
   
-  const {data} = await axios.post("/api/v1/users/token/",
+  const {data} = await axios.post("http://localhost:8000/api/v1/students/login/",
   {
     username: username,
     password: password
   }
   )
 
-  console.log(data);
-
+  localStorage.setItem('token', JSON.stringify(data));
+  navigate("/dashboard-estudiante2")
 
   //const validEmail = "usuario@email.com";
   //const validPassword = "usuario";

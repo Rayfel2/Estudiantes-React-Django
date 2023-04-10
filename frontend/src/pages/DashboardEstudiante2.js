@@ -1,14 +1,11 @@
 import styles from "./DashboardEstudiante2.module.css";
 import React, { useState, useEffect } from 'react';
 import jsonData from "./datos.json";
+import axios from 'axios';
 
 const DashboardEstudiante2 = () => {
-    //code subject
-    const [subjectcode1, setSubjectcode1] = useState("");
-    const [subjectcode2, setSubjectcode2] = useState("");
-    const [subjectcode3, setSubjectcode3] = useState("");
-    const [subjectcode4, setSubjectcode4] = useState("");
-    const [subjectcode5, setSubjectcode5] = useState("");
+    
+
     //Name subject
     const [subjectname1, setSubjectname1] = useState("");
     const [subjectname2, setSubjectname2] = useState("");
@@ -33,155 +30,126 @@ const DashboardEstudiante2 = () => {
     const [lettergrade3, setLettergrade3] = useState("");
     const [lettergrade4, setLettergrade4] = useState("");
     const [lettergrade5, setLettergrade5] = useState("");
-  
-  
-  
-    //Para asegurarme que la materia sea del estudiante que inicio seccion
-    const validEmail = "usuario@email.com";
-    const validPassword = "usuario";
-    const user = jsonData.Estudiante.find((Login) => Login.email === validEmail);
 
-    
-    const filteredData = jsonData.Materia_Usuario_Ciclo.filter(estudianteid => estudianteid.student_id === user.id);
-    const studentRecords = jsonData.AcademicCycle.filter(record => record.student_id === user.id);
-    const Estudiante = jsonData.Estudiante.find((Estudiante) => Estudiante.id === user.id);
+    const [username, setUsername] = useState("");
+    const [userlastname, setUserlastname] = useState("");
+    const [totalcredits, setTotalCredits] = useState("");
+    const [generalIndex, setGeneralIndex] = useState("");
+    const [quarterlyIndex, setQuarterlyIndex] = useState("");
+    const [totalquarter, setTotalQuarter] = useState("");
+
+    const [jValue, setJValue] = useState(0);
+    const [datalength, setDatalength] = useState(0);
+
+
+
+    function handleNextClick() {
+      setJValue(jValue + 5);
+    }
   
-    //cargando los datos generales
-    const generalIndex = (Estudiante.last_gpa); // indice general
-    const quarterlyIndex = (Estudiante.overall_gpa); // Indice del trimestre
-    const recordCount = studentRecords.length; // cantidad de trimestres
-    const subjectCount = filteredData.length; // cantidad de asignatura cursadas
-    const totalCredits = studentRecords.reduce((accumulator, record) => accumulator + record.taken_credits, 0); //suma de los creditos
+    function handlePrevClick() {
+      setJValue(jValue - 5);
+    }
+
   
     useEffect(() => {
-    const filteredDataLength = filteredData.length; // cantidad de materias filtradas
-  
-    for (let i = 0; i < filteredDataLength; i++) {
-      const subjectData = filteredData[i];
-      const { midterm_grade, final_grade, final_grade_letter, subject_id } = subjectData;
-  
-      // Asignar valores correspondientes a las variables de estado para cada materia
-      switch (i) {
-        case 0:
-          setMidterm1(midterm_grade);
-          setFinalgrade1(final_grade);
-          setLettergrade1(final_grade_letter);
-          break;
-        case 1:
-          setMidterm2(midterm_grade);
-          setFinalgrade2(final_grade);
-          setLettergrade2(final_grade_letter);
-          break;
-        case 2:
-          setMidterm3(midterm_grade);
-          setFinalgrade3(final_grade);
-          setLettergrade3(final_grade_letter);
-          break;
-        case 3:
-          setMidterm4(midterm_grade);
-          setFinalgrade4(final_grade);
-          setLettergrade4(final_grade_letter);
-          break;
-        case 4:
-          setMidterm5(midterm_grade);
-          setFinalgrade5(final_grade);
-          setLettergrade5(final_grade_letter);
-          break;
-        default:
-          break;
+      
+      const { access } = JSON.parse(localStorage.getItem('token'));
+      const config = {
+        headers: {
+          Authorization: `Bearer ${access}`,
+        },
+      };      
+
+      async function getSubjects() {
+
+
+        const { data }  = await axios.get(
+          'http://localhost:8000/api/v1/students/profile/grades/',
+          config
+        );
+
+
+            const DataLength = data.length;
+        setDatalength(DataLength);
+        
+        for (let i = jValue; i < DataLength; i++) {
+          const subjectData = data[i];
+
+          const { midterm_grade, final_grade, final_grade_letter, subject: {name}, cycle:{last_gpa, overall_gpa}} = subjectData;
+          
+          setGeneralIndex(last_gpa); // indice general
+          setQuarterlyIndex(overall_gpa); // Indice del trimestre
+
+          // Asignar valores correspondientes a las variables de estado para cada materia
+          switch (i) {
+            case jValue+0:
+              setMidterm1(midterm_grade);
+              setFinalgrade1(final_grade);
+              setLettergrade1(final_grade_letter);
+              setSubjectname1(name);
+              break;
+            case jValue+1:
+              setMidterm2(midterm_grade);
+              setFinalgrade2(final_grade);
+              setLettergrade2(final_grade_letter);
+              setSubjectname2(name);
+              break;
+            case jValue+2:
+              setMidterm3(midterm_grade);
+              setFinalgrade3(final_grade);
+              setLettergrade3(final_grade_letter);
+              setSubjectname3(name);
+              break;
+            case jValue+3:
+              setMidterm4(midterm_grade);
+              setFinalgrade4(final_grade);
+              setLettergrade4(final_grade_letter);
+              setSubjectname4(name);
+              break;
+            case jValue+4:
+              setMidterm5(midterm_grade);
+              setFinalgrade5(final_grade);
+              setLettergrade5(final_grade_letter);
+              setSubjectname5(name);
+              break;
+            default:
+              break;
+          }
+          }
+        
+
       }
+      getSubjects();
+
+      async function getProfile() {
+      const { data }  = await axios.get(
+        'http://localhost:8000/api/v1/students/profile/',
+        config
+      );
+      const subjectData = data;
+      const { user: {first_name, last_name}} = subjectData;
+    setUsername(first_name);
+    setUserlastname(last_name);
   
-      // Obtener el nombre y código de la materia correspondiente
-      const subject = jsonData.Subject.find((subject) => subject.id === subject_id);
-      if (subject) {
-        switch (i) {
-          case 0:
-            setSubjectname1(subject.name);
-            setSubjectcode1(subject.code);
-            break;
-          case 1:
-            setSubjectname2(subject.name);
-            setSubjectcode2(subject.code);
-            break;
-          case 2:
-            setSubjectname3(subject.name);
-            setSubjectcode3(subject.code);
-            break;
-          case 3:
-            setSubjectname4(subject.name);
-            setSubjectcode4(subject.code);
-            break;
-          case 4:
-            setSubjectname5(subject.name);
-            setSubjectcode5(subject.code);
-            break;
-          default:
-            break;
-        }
-      }
-    }
-  }, [filteredData, jsonData]);
-    // cargando los datos especificos
-    /*
-    for (let i = 0; i < filteredData.Length; i++) {
-    useEffect(()=>{
-    if (filteredData[0]) {
-      
-      setMidterm1(filteredData[0].midterm_grade);
-      setFinalgrade1(filteredData[0].final_grade);
-      setLettergrade1(filteredData[0].final_grade_letter);
-      
-      // Pasando el id de la tabla puente a la tabla subject para obtener el nombre
-      const subject = jsonData.Subject.find((subject) => subject.id === filteredData[0].subject_id);
-      setSubjectname1(subject.name);
-      setSubjectcode1(subject.code);
-      
-      
-    } else if (filteredData[1]) {
-      setMidterm2(filteredData[1].midterm_grade);
-      setFinalgrade2(filteredData[1].final_grade);
-      setLettergrade2(filteredData[1].final_grade_letter);
-      
-      // Pasando el id de la tabla puente a la tabla subject para obtener el nombre
-      const subject = jsonData.Subject.find((subject) => subject.id === filteredData[1].subject_id);
-      setSubjectname2(subject.name);
-      setSubjectcode2(subject.code);
+
+    } 
+      getProfile();
+
+      async function getRecord() {
+        const { data }  = await axios.get(
+          'http://localhost:8000/api/v1/students/profile/academic-record/',
+          config
+        );
+        const total = data.reduce((accumulator, record) => accumulator + record.taken_credits, 0);
+        setTotalCredits(total);
+        setTotalQuarter(data.length);
+
   
-    } else if (filteredData[2]) {
-          setMidterm3(filteredData[2].midterm_grade);
-      setFinalgrade3(filteredData[2].final_grade);
-      setLettergrade3(filteredData[2].final_grade_letter);
+      } 
+        getRecord();
       
-      
-      // Pasando el id de la tabla puente a la tabla subject para obtener el nombre
-      const subject = jsonData.Subject.find((subject) => subject.id === filteredData[2].subject_id);
-      setSubjectname3(subject.name);
-      setSubjectcode3(subject.code);
-  
-    } else if (filteredData[3]) {
-          setMidterm4(filteredData[3].midterm_grade);
-      setFinalgrade4(filteredData[3].final_grade);
-      setLettergrade4(filteredData[3].final_grade_letter);
-      
-      // Pasando el id de la tabla puente a la tabla subject para obtener el nombre
-      const subject = jsonData.Subject.find((subject) => subject.id === filteredData[3].subject_id);
-      setSubjectname4(subject.name);
-      setSubjectcode4(subject.code);
-  
-    } else if (filteredData[4]) {
-          setMidterm5(filteredData[4].midterm_grade);
-      setFinalgrade5(filteredData[4].final_grade);
-      setLettergrade5(filteredData[4].final_grade_letter);
-      
-      // Pasando el id de la tabla puente a la tabla subject para obtener el nombre
-      const subject = jsonData.Subject.find((subject) => subject.id === filteredData[4].subject_id);
-      setSubjectname5(subject.name);
-      setSubjectcode5(subject.code);
-  
-    }
-    
-  
-  }, []) }*/
+    }, [jValue]);
   return (
     <div className={styles.dashboardEstudiante2}>
       <div className={styles.header}>
@@ -223,9 +191,7 @@ const DashboardEstudiante2 = () => {
           alt=""
           src="/rectangle-2769.svg"
         />
-        <a href = "/ver-perfil">
         <button className={styles.menuPrincipalItem} />
-        </a>
         <div className={styles.groupParent}>
           <div className={styles.iconoirheadsetHelpParent}>
             <img
@@ -236,9 +202,7 @@ const DashboardEstudiante2 = () => {
             <b className={styles.help}>Help</b>
           </div>
           <div className={styles.signOutParent}>
-            <a href = "/">
-            <b className={styles.signOut}>Sign Out</b>
-            </a>
+          <a href="/"><b className={styles.signOut}>Sign Out</b></a>
             <img
               className={styles.vuesaxlinearlogoutIcon}
               alt=""
@@ -248,7 +212,7 @@ const DashboardEstudiante2 = () => {
           <div className={styles.rectangleParent}>
             <div className={styles.groupInner} />
             <div className={styles.dashboardParent}>
-              <h1 className={styles.dashboard}>Dashboard</h1>
+            <a href="/dashboard-estudiante2"> <h1 className={styles.dashboard}>Dashboard</h1> </a>
               <img
                 className={styles.vuesaxlinearhome2Icon}
                 alt=""
@@ -256,11 +220,9 @@ const DashboardEstudiante2 = () => {
               />
             </div>
           </div>
-          <a href="/calificaciones-estudiante">
           <div className={styles.calificacionesWrapper}>
-            <b className={styles.calificaciones}>Calificaciones</b>
+          <a href="/calificaciones-estudiante"><b className={styles.calificaciones}>Calificaciones</b> </a>
           </div>
-          </a>
           <img className={styles.groupIcon} alt="" src="/group-34166.svg" />
           <div className={styles.menuPrincipal1}>MENU PRINCIPAL</div>
           <div className={styles.support}>SUPPORT</div>
@@ -272,64 +234,66 @@ const DashboardEstudiante2 = () => {
             alt=""
             src="/vuesaxlineardocumenttext.svg"
           />
-           <a href="/materias-estudiante">
-              <b className={styles.materias}>Materias</b>
-          </a> 
+          <a href="/seleccion-estudiante1"><b className={styles.retiro}>Retiro</b></a>
         </div>
         <div className={styles.seleccionParent}>
-          <a href="/seleccion-estudiante2">
-          <b className={styles.seleccion}>{`Seleccion `}</b>
+        <a href="/seleccion-estudiante2"><b className={styles.seleccion}>{`Seleccion `}</b> </a>
           <img
             className={styles.vuesaxlinearuserCirlceAddIcon}
             alt=""
             src="/vuesaxlinearusercirlceadd.svg"
           />
-          </a>
         </div>
-        <div className={styles.ellipseParent}>
+        <a href="/ver-perfil"><div className={styles.ellipseParent}>
           <img className={styles.ellipseIcon} alt="" />
           <div className={styles.davidFelixParent}>
-          <a href = "/ver-perfil">
-            <h2 className={styles.davidFelix}>David Felix</h2>
+            <h2 className={styles.davidFelix}>{username} {userlastname}</h2>
             <div className={styles.estudiante}>Estudiante</div>
-            </a>
-          </div>
-        </div>
+          </div> 
+        </div></a>
         <h1 className={styles.estudiante1}>ESTUDIANTE</h1>
       </div>
       <div className={styles.dashboardButtom}>
         <section className={styles.chart37}>
           <div className={styles.overview}>
-            <div className={styles.trophy}>{generalIndex}</div>
-            <div className={styles.trophy1}>Indice general</div>
+            <b className={styles.trophy}>{generalIndex}</b>
+            <div className={styles.trophy1}>
+              <span className={styles.trophyTxt}>
+                <p className={styles.indice}>{`Indice `}</p>
+                <p className={styles.indice}>general</p>
+              </span>
+            </div>
           </div>
         </section>
         <div className={styles.chart36}>
           <div className={styles.overview}>
-            <div className={styles.trophy2}>{subjectCount}</div>
+            <b className={styles.trophy2}>{datalength}</b>
             <div className={styles.trophy3}>
-              <p className={styles.asignaturas}>{`Asignaturas `}</p>
-              <p className={styles.asignaturas}>{`de cursadas `}</p>
-              <p className={styles.asignaturas}>de 110</p>
+              <span className={styles.trophyTxt}>
+                <p className={styles.indice}>{`Asignaturas `}</p>
+                <p className={styles.indice}>{`cursadas `}</p>
+                <p className={styles.indice}>de 110</p>
+              </span>
             </div>
           </div>
         </div>
-        <div className={styles.chart36}>
+        <div className={styles.chart38}>
           <div className={styles.overview}>
-            <div className={styles.trophy4}>{recordCount}</div>
+            <b className={styles.trophy4}>{totalquarter}</b>
             <div className={styles.trophy5}>
-              <p className={styles.asignaturas}>Trimestres</p>
-              <p className={styles.asignaturas}>cursados de 21</p>
+              <p className={styles.indice}>Trimestres</p>
+              <p className={styles.indice}>{`cursados `}</p>
+              <p className={styles.indice}>de 21</p>
             </div>
           </div>
         </div>
-        <section className={styles.chart37}>
+        <section className={styles.chart39}>
           <div className={styles.overview}>
-            <div className={styles.trophy6}>{totalCredits}</div>
+            <b className={styles.trophy6}>{totalcredits}</b>
             <div className={styles.trophy7}>
-              <p className={styles.asignaturas}>Creditos</p>
-              <p className={styles.asignaturas}>aprobados</p>
-              <p className={styles.asignaturas}>de 279</p>
+              <p className={styles.indice}>Creditos</p>
+              <p className={styles.indice}>aprobados</p>
+              <p className={styles.indice}>de 279</p>
             </div>
           </div>
         </section>
@@ -337,15 +301,14 @@ const DashboardEstudiante2 = () => {
       <div className={styles.dashboard1}>
         <div className={styles.dashboard2}>
           <div className={styles.dashboardChild} />
-          <a href="/calificaciones-estudiante">
-          <button className={styles.verDetallesParent} autoFocus>
+          <a href="calificaciones-estudiante"><button className={styles.verDetallesParent} autoFocus>
             <div className={styles.verDetalles}>Ver detalles</div>
             <img
               className={styles.bxbxsChevronRightIcon}
               alt=""
               src="/bxbxschevronright.svg"
             />
-          </button> </a>
+          </button></a>
           <div className={styles.dashboardItem} />
           <div className={styles.indiceAcademicoParent}>
             <b className={styles.indiceAcademico}>Indice Academico</b>
@@ -353,16 +316,12 @@ const DashboardEstudiante2 = () => {
           </div>
           <div className={styles.rectangleGroup}>
             <div className={styles.rectangleDiv} />
-            
-            <b className={styles.b}>{finalgrade1}</b>
-            <b className={styles.b1}>{finalgrade2}</b>
-            <b className={styles.b2}>{finalgrade3}</b>
-            <b className={styles.b3}>{finalgrade4}</b>
-            <b className={styles.b4}>{finalgrade5}</b>
             <b className={styles.asignaturasSeleccionadas}>
               Asignaturas seleccionadas
             </b>
+            {(jValue+0 < datalength) && (
             <div className={styles.parent}>
+              <b className={styles.b}>{finalgrade1}</b>
               <b className={styles.b5}>{midterm1}</b>
               <div className={styles.basesDeDatoWrapper}>
                 <div className={styles.basesDeDato}>{subjectname1}</div>
@@ -375,8 +334,11 @@ const DashboardEstudiante2 = () => {
                 />
                 <b className={styles.b6}>{lettergrade1}</b>
               </div>
-            </div>
+            
+            </div> )}
+            {(jValue+1 < datalength) && (
             <div className={styles.group}>
+              <b className={styles.b1}>{finalgrade2}</b>
               <b className={styles.b7}>{midterm2}</b>
               <div className={styles.labBasesDeWrapper}>
                 <div className={styles.labBasesDe}>{subjectname2}</div>
@@ -385,12 +347,14 @@ const DashboardEstudiante2 = () => {
                 <img
                   className={styles.groupChild2}
                   alt=""
-                  src="/ellipse-68.svg"
+                  src="/ellipse-681.svg"
                 />
                 <b className={styles.b8}>{lettergrade2}</b>
               </div>
-            </div>
+            </div>)}
+            {(jValue+2 < datalength) && (
             <div className={styles.container}>
+              <b className={styles.b2}>{finalgrade3}</b>
               <b className={styles.b9}>{midterm3}</b>
               <div className={styles.algebraYGeoWrapper}>
                 <div className={styles.algebraYGeo}>{subjectname3}</div>
@@ -399,12 +363,14 @@ const DashboardEstudiante2 = () => {
                 <img
                   className={styles.groupChild2}
                   alt=""
-                  src="/ellipse-68.svg"
+                  src="/ellipse-682.svg"
                 />
                 <b className={styles.a}>{lettergrade3}</b>
               </div>
-            </div>
+            </div> )}
+            {(jValue+3 < datalength) && (
             <div className={styles.parent1}>
+              <b className={styles.b3}>{finalgrade4}</b>
               <b className={styles.b10}>{midterm4}</b>
               <div className={styles.ciudadaniaYWrapper}>
                 <div className={styles.ciudadaniaY}>{subjectname4}</div>
@@ -413,12 +379,14 @@ const DashboardEstudiante2 = () => {
                 <img
                   className={styles.groupChild2}
                   alt=""
-                  src="/ellipse-68.svg"
+                  src="/ellipse-683.svg"
                 />
                 <b className={styles.a1}>{lettergrade4}</b>
               </div>
-            </div>
+            </div> )}
+            {(jValue+4 < datalength) && (
             <div className={styles.parent2}>
+                          <b className={styles.b4}>{finalgrade5}</b>
               <b className={styles.b11}>{midterm5}</b>
               <div className={styles.electivaMedioWrapper}>
                 <div className={styles.electivaMedio}>{subjectname5}</div>
@@ -427,12 +395,12 @@ const DashboardEstudiante2 = () => {
                 <img
                   className={styles.groupChild2}
                   alt=""
-                  src="/ellipse-68.svg"
+                  src="/ellipse-684.svg"
                 />
                 <b className={styles.a1}>{lettergrade5}</b>
               </div>
-              <div className={styles.trophy8}>Calif</div>
-            </div>
+            </div>)}
+            <div className={styles.trophy8}>Calif</div>
             <div className={styles.trophy9}>Medio termino</div>
           </div>
           <img
@@ -442,94 +410,16 @@ const DashboardEstudiante2 = () => {
           />
         </div>
         <b className={styles.dashboard3}>Dashboard</b>
-      </div>
-      <div className={styles.horario}>
-        <div className={styles.ladeboard}>
-          <img
-            className={styles.ladeboardChild}
-            alt=""
-            src="/rectangle-585.svg"
-          />
-          <button className={styles.rectangleContainer}>
-            <div className={styles.groupChild7} />
-            <img className={styles.groupChild8} alt="" src="/group-53.svg" />
-          </button>
-          <div className={styles.horarioDeClases}>Horario de clases</div>
-          <div className={styles.clase}>Clase</div>
-          <div className={styles.horario1}>Horario</div>
-          <div className={styles.fecha}>Fecha</div>
-          <div className={styles.estructuraDeDatosYAlgoritmParent}>
-            <div className={styles.estructuraDeDatosContainer}>
-              <span className={styles.estructuraDeDatosContainer1}>
-                <p className={styles.estructuraDeDatos}>
-                  {subjectname1}
-                </p>
-                <p className={styles.computerScience}>{subjectcode1}</p>
-              </span>
-            </div>
-            <section className={styles.rectangleSection} />
-            <div className={styles.am100pm}>8:30am-1:00pm</div>
-            <div className={styles.maana09AbrilContainer}>
-              <p className={styles.asignaturas}>Mañana</p>
-              <p className={styles.p}>
-                <span>
-                  <b>09</b>
-                </span>
-              </p>
-              <p className={styles.abril}>
-                <span>
-                  <span>Abril</span>
-                </span>
-              </p>
-            </div>
-          </div>
-          <div className={styles.estructuraDeDatosYAlgoritmGroup}>
-            <div className={styles.definicionYIdeacionContainer}>
-              <span className={styles.estructuraDeDatosContainer1}>
-                <p className={styles.estructuraDeDatos}>
-                  {subjectname2}
-                </p>
-                <p className={styles.ins32501}>{subjectcode2}</p>
-              </span>
-            </div>
-            <section className={styles.rectangleSection} />
-            <div className={styles.am1200pm}>9:30am-12:00pm</div>
-            <div className={styles.miercoles10AbrilContainer}>
-              <p className={styles.asignaturas}>Miercoles</p>
-              <p className={styles.p1}>
-                <span>
-                  <b>10</b>
-                </span>
-              </p>
-              <p className={styles.asignaturas}>
-                <span>
-                  <span>Abril</span>
-                </span>
-              </p>
-            </div>
-          </div>
-          <div className={styles.definicionYIdeacionIds322Parent}>
-            <div className={styles.definicionYIdeacionContainer}>
-              <span className={styles.estructuraDeDatosContainer1}>
-                <p className={styles.estructuraDeDatos}>
-                  {subjectname3}
-                </p>
-                <p className={styles.ins32501}>{subjectcode3}</p>
-              </span>
-            </div>
-            <section className={styles.rectangleSection} />
-            <div className={styles.am1200pm}>3:30pm-7:00pm</div>
-            <div className={styles.miercoles10AbrilContainer1}>
-              <p className={styles.asignaturas}>Miercoles</p>
-              <p className={styles.p1}>
-                <b>10</b>
-              </p>
-              <p className={styles.asignaturas}>Abril</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.line} />
-        <div className={styles.line1} />
+        {(datalength > (jValue+5)) && (
+        <b className={styles.siguiente} onClick={handleNextClick}>
+        {'Siguiente >'}
+      </b>
+        )}
+      {jValue > 0 && (
+        <b className={styles.anterior} onClick={handlePrevClick}>
+          {'< Anterior'}
+        </b>
+      )}
       </div>
       <div className={styles.reporte}>
         <div className={styles.reporteChild} />
@@ -539,7 +429,7 @@ const DashboardEstudiante2 = () => {
             <div className={styles.indiceTrimestral}>Indice trimestral</div>
           </div>
           <div className={styles.rectangleWrapper}>
-            <div className={styles.groupChild11} />
+            <div className={styles.groupChild7} />
           </div>
         </div>
         <div className={styles.listItems}>
@@ -579,92 +469,15 @@ const DashboardEstudiante2 = () => {
               <img
                 className={styles.reportIcon}
                 alt=""
-                src="/arrow-right1.svg"
+                src="/arrow-right.svg"
               />
             </div>
           </div>
         </div>
         <img className={styles.reporteItem} alt="" src="/rectangle-901.svg" />
       </div>
-      <section className={styles.alertas}>
-        <div className={styles.flag}>
-          <div className={styles.content}>
-            <div className={styles.base}>
-              <img
-                className={styles.ic20WarningIcon}
-                alt=""
-                src="/ic20warning.svg"
-              />
-            </div>
-            <div className={styles.content1}>
-              <div className={styles.alertas1}>Alertas</div>
-              <div className={styles.description}>
-                Pay attention, ya se acerca la seleccion.
-              </div>
-              <div className={styles.actions}>
-                <div className={styles.link}>
-                  <div className={styles.link1}>Understood</div>
-                </div>
-                <img
-                  className={styles.ic16userInterfacedotIcon}
-                  alt=""
-                  src="/ic16user-interfacedot.svg"
-                />
-                <div className={styles.link2}>
-                  <div className={styles.link3}>No thanks</div>
-                </div>
-              </div>
-            </div>
-            <div className={styles.frame}>
-              <img
-                className={styles.ic20CloseIcon}
-                alt=""
-                src="/ic20close.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div className={styles.flag1}>
-          <div className={styles.content}>
-            <div className={styles.base1}>
-              <img
-                className={styles.ic20WarningIcon}
-                alt=""
-                src="/ic20warning1.svg"
-              />
-            </div>
-            <div className={styles.content1}>
-              <div className={styles.alertas1}>Uh oh!</div>
-              <div className={styles.description1}>
-                Pay attention, ya se acerca la seleccion.
-              </div>
-              <div className={styles.actions1}>
-                <div className={styles.link}>
-                  <div className={styles.link1}>Understood</div>
-                </div>
-                <img
-                  className={styles.ic16userInterfacedotIcon}
-                  alt=""
-                  src="/ic16user-interfacedot1.svg"
-                />
-                <div className={styles.link2}>
-                  <div className={styles.link3}>No thanks</div>
-                </div>
-              </div>
-            </div>
-            <button className={styles.icon}>
-              <img
-                className={styles.ic20CloseIcon}
-                alt=""
-                src="/ic20close1.svg"
-              />
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
-
 
 export default DashboardEstudiante2;
