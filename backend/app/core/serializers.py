@@ -183,3 +183,18 @@ class ProfessorGradeReviewSerializer(serializers.ModelSerializer):
         exclude = ("subject" , "cycle")
         read_only_fields = ("id", "final_grade_letter")
 
+class ProfessorSimpleSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = models.Professor
+        fields = ("id", "user")
+        
+
+class SubjectWithProfessorSerializer(serializers.ModelSerializer):
+    professor = ProfessorSimpleSerializer()
+
+    class Meta:
+        model = models.Subject
+        fields = "__all__"
+        read_only_fields = ("id",)

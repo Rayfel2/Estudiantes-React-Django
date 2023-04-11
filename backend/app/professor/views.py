@@ -133,4 +133,20 @@ class ProfessorSubjectEditGradeStudent(APIView):
 
         serializer = serializers.ProfessorGradeSerializer(subject_cycle)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class SubjectList(APIView):
+    serializer_class = serializers.SubjectWithProfessorSerializer
+
+    def get(self, request, format=None):
+        try:
+            request = request.user
+            subjects = models.Subject.objects.all()
+            serializer = self.serializer_class(subjects, many=True)
+            response = serializer.data
+            return Response(response, status=status.HTTP_200_OK)
+        except Exception as e:
+            print(e)
+            return Response(
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
 
