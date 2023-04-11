@@ -1,3 +1,4 @@
+
 .headerChild {
   position: absolute;
   top: 66.5px;
@@ -325,6 +326,8 @@
   font-size: inherit;
   font-weight: 700;
   font-family: inherit;
+  white-space: nowrap;
+  text-align: center; 
 }
 .estudiante {
   top: 19px;
@@ -964,8 +967,7 @@
   border-radius: var(--br-5xs);
   background-color: var(--putih);
   box-shadow: 0 5px 10px #f1f2fa;
-  width: 1319px;
-  height: 457px;
+  height: 200px;
 }
 .div,
 .indiceTrimestral {
@@ -1000,10 +1002,43 @@
   width: 64px;
   height: 64px;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.rectangleWrapper2 {
+  position: absolute;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  top: 2em;
+  width: 31em;
+  height: 10em;
+}
+.rectangleWrapper3 {
+  position: absolute;
+  top: 15em;
+  left: 3em;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 23em;
+  height: auto;
+  white-space: nowrap;
+
+}
 .groupContainer {
   top: 24px;
   left: 27px;
-  width: 214px;
   height: 72px;
 }
 .title {
@@ -1108,21 +1143,14 @@
   color: var(--palette-blue-gray-700);
   font-family: var(--typography-label-large);
 }
-.reporteItem {
-  position: absolute;
-  top: 105px;
-  left: 17px;
-  border-radius: var(--br-5xs);
-  width: 1295px;
-  height: 358px;
-}
+
 .reporte {
   position: absolute;
   top: 762px;
   left: 353px;
   box-shadow: 0 4px 20px #e8ecff;
-  width: 1319px;
-  height: 455px;
+
+  height: 600px;
   font-size: var(--font-size-21xl);
   color: var(--color-gray-300);
 }

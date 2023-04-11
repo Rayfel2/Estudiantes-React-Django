@@ -1,20 +1,37 @@
 import styles from "./VerPerfil.module.css";
 import React, { useState, useEffect } from "react";
 import jsonData from "./datos.json";
+import axios from 'axios';
 
 const VerPerfil = () => {
-  const validEmail = "usuario@email.com";
-  const validPassword = "usuario";
-  const user = jsonData.Estudiante.find((Login) => Login.email === validEmail);
-  const PersonId = jsonData.Estudiante.find((Person) => Person.id === user.id);
-  const Perfil = jsonData.Person.find((Perfil) => Perfil.id === PersonId.person_id);
+  const { access } = JSON.parse(localStorage.getItem('token'));
+  const config = {
+    headers: {
+      Authorization: `Bearer ${access}`,
+    },
+  };     
+  const [username, setUsername] = useState("");
+  const [userlastname, setUserlastname] = useState("");
+  const [useremail, setUseremail] = useState("");
+  const [userbirth, setUserbirth] = useState("");
+  const [userid, setUserid] = useState("");
 
+  async function getProfile() {
+    const { data }  = await axios.get(
+      'http://localhost:8000/api/v1/students/profile/',
+      config
+    );
+    const subjectData = data;
+    const { user: {first_name, last_name, email, birth_date, document_no}} = subjectData;
+  setUsername(first_name);
+  setUserlastname(last_name);
+  setUseremail(email);
+  setUserbirth(birth_date);
+  setUserid(document_no);
 
-  const name = Perfil.first_name;
-  const lastname = Perfil.last_name;
-  const email = Perfil.email;
-  const cumple = Perfil.birth_date;
-  const id = PersonId.registration_number;  
+  } 
+    getProfile();
+
 
 
   return (
@@ -27,7 +44,7 @@ const VerPerfil = () => {
               className={styles.groupChild}
               type="text"
               placeholder="Email no encontrado"
-              defaultValue={email}
+              defaultValue={useremail}
               readOnly
             />
             <div className={styles.cumpleaos}>Cumpleaños</div>
@@ -37,7 +54,7 @@ const VerPerfil = () => {
               className={styles.groupItem}
               type="text"
               placeholder="fecha de nacimiento no encontrada"
-              defaultValue={cumple}
+              defaultValue={userbirth}
               readOnly
             />
             <div className={styles.email}>{`Email `}</div>
@@ -47,7 +64,7 @@ const VerPerfil = () => {
               className={styles.groupInner}
               type="text"
               placeholder="Apellido no encontrado"
-              defaultValue={lastname}
+              defaultValue={userlastname}
               readOnly
             />
             <div className={styles.apellido}>Apellido</div>
@@ -57,7 +74,7 @@ const VerPerfil = () => {
               className={styles.groupInput}
               type="text"
               placeholder="Nombre no encontrado"
-              defaultValue={name}
+              defaultValue={username}
               readOnly
             />
             <div className={styles.apellido}>Nombre</div>
@@ -67,7 +84,7 @@ const VerPerfil = () => {
               className={styles.groupChild1}
               type="text"
               placeholder="ID no encontrado"
-              defaultValue={id}
+              defaultValue={userid}
               readOnly
             />
             <div className={styles.id}>ID</div>

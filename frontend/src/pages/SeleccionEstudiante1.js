@@ -4,7 +4,6 @@ import jsonData from "./datos.json";
 import axios from 'axios';
 
 
-
 const SeleccionEstudiante1 = () => {
 
       //id record
@@ -54,11 +53,17 @@ const SeleccionEstudiante1 = () => {
     const [buttonValue, setButtonValue] = useState(0);
     const [selectedId, setSelectedId] = useState(null);
 
+    const [retiretotal, setRetiretotal] = useState(0);
+    const [enrolledtotal, setEnrolledTotal] = useState(0);
+    const [continuetotal, setContinueTotal] = useState(0);
 
+    const [selectedRadio, setSelectedRadio] = useState(null);
     
-  function handleCheckboxChange(event) {
-    setSelectedId(parseInt(event.target.value));
-  }
+      const handleCheckboxChange = (event) => {
+        setSelectedId(parseInt(event.target.value));
+        setSelectedRadio(parseInt(event.target.value));
+      };    
+    
     function handleChange(e) {
       setInputValue(e.target.value);
       setJValue(0);
@@ -80,21 +85,27 @@ const SeleccionEstudiante1 = () => {
     };      
     
     function handleDeleteButtonClick() {
+      
       if (selectedId === null) {
-        console.error('Debes seleccionar un checkbox');
+        
+        window.alert('Debes seleccionar una asignatura');
         return;
       }
-
+      setSelectedId(null);
+      setSelectedRadio(null);
+      window.alert(selectedId);
       axios.delete(`http://localhost:8000/api/v1/subject-cycles/${selectedId}/retire/`, config)
       
         .then(response => {
-          console.log('El recurso se eliminó correctamente');
+          
+          window.alert('La materia se retiro correctamente');
           setButtonValue(buttonValue + 1);
         })
         .catch(error => {
-          
+          window.alert ('Ocurrio un error al retirar la materia');
           console.error('Ocurrió un error al eliminar el recurso:', error);
-        });
+        })
+        
     }
 
   
@@ -109,9 +120,10 @@ const SeleccionEstudiante1 = () => {
           config
         );
         const retireData = data.filter (item => item.final_grade_letter != "R" )
-        //buttonValue =  data.filter (item => item.final_grade_letter == "R" ).length // cantidad de materias retiradas
-        //console.log(butonValue);
         const filteredData = retireData.filter(item => item.subject.code.startsWith(inputValue.toUpperCase()));
+        setRetiretotal(data.length - retireData.length);
+        setEnrolledTotal(data.length);
+        setContinueTotal(retireData.length);
 
         let DataLength = {};
           if (inputValue != "") {
@@ -208,7 +220,6 @@ const SeleccionEstudiante1 = () => {
           <div className={styles.headerItem} />
           <section className={styles.searchBar}>
             <div className={styles.searchBarChild} />
-            <input className={styles.searchBarItem} type="text" />
           </section>
           <div className={styles.tanggalanParent}>
             <div className={styles.tanggalan}>
@@ -237,23 +248,23 @@ const SeleccionEstudiante1 = () => {
           />
         </section>
         <b className={styles.retiroDeMaterias}>Retiro de materias</b>
-        <div className={styles.cancelar}>CANCELAR</div>
+        <div className={styles.cancelar}></div>
         <button className={styles.button}  onClick={handleDeleteButtonClick}>
           <div className={styles.text}>RETIRAR</div>
         </button>
         <section className={styles.weather}>
           <div className={styles.rectangle} />
-          <b className={styles.b}>6</b>
+          <b className={styles.b}>{enrolledtotal}</b>
           <div className={styles.sunny}>Inscritas</div>
         </section>
         <div className={styles.weather1}>
           <div className={styles.rectangle} />
-          <h1 className={styles.h1}>{buttonValue}</h1>
+          <h1 className={styles.h1}>{retiretotal}</h1>
           <div className={styles.sunny}>Retiradas</div>
         </div>
         <section className={styles.weather2}>
           <div className={styles.rectangle} />
-          <h1 className={styles.h1}>6</h1>
+          <h1 className={styles.h1}>{continuetotal}</h1>
           <div className={styles.sunny2}>Continua</div>
         </section>
         <div className={styles.vectorParent}>
@@ -270,7 +281,7 @@ const SeleccionEstudiante1 = () => {
                   {subjectcode1} - {subjectname1}
                 </div>
               </div> 
-              <input className={styles.boxunchecked} type="checkbox" value={recordid1} onChange={handleCheckboxChange} />
+              <input className={styles.boxunchecked} type="radio"   name="radio" value={recordid1} checked={selectedRadio === recordid1} onChange={handleCheckboxChange} />
             </div>)}
             {(jValue+1 < datalength) && (
             <div className={styles.div3}>
@@ -280,7 +291,7 @@ const SeleccionEstudiante1 = () => {
               </div>
               <div className={styles.div4}>{subjectcredit2}</div>
               <div className={styles.div5}>{subjectlab2? 'Si':'No'}</div>
-              <input className={styles.boxunchecked1} type="checkbox" value={recordid2} onChange={handleCheckboxChange} />
+              <input className={styles.boxunchecked1} type="radio"   name="radio" value={recordid2} checked={selectedRadio === recordid2} onChange={handleCheckboxChange} />
             </div>)}
             {(jValue+2 < datalength) && (
             <div className={styles.div6}>
@@ -292,7 +303,7 @@ const SeleccionEstudiante1 = () => {
                 <div className={styles.div7}>{subjectcredit3}</div>
                 <div className={styles.div8}>{subjectlab3? 'Si':'No'}</div>
               </div>
-              <input className={styles.boxunchecked4} type="checkbox" value={recordid3} onChange={handleCheckboxChange}/>
+              <input className={styles.boxunchecked4} type="radio"   name="radio" value={recordid3} checked={selectedRadio === recordid3} onChange={handleCheckboxChange}/>
             </div>)}
             {(jValue+3 < datalength) && (
             <div className={styles.div9}>
@@ -304,7 +315,7 @@ const SeleccionEstudiante1 = () => {
               </div>
               <div className={styles.div10}>{subjectlab4? 'Si':'No'}</div>
               <div className={styles.div11}>{subjectcredit4}</div>
-              <input className={styles.boxunchecked2} type="checkbox" value={recordid4} onChange={handleCheckboxChange} />
+              <input className={styles.boxunchecked2} type="radio"   name="radio" value={recordid4} checked={selectedRadio === recordid4} onChange={handleCheckboxChange} />
             </div> )}
             {(jValue+4 < datalength) && (
             <div className={styles.div12}>
@@ -316,7 +327,7 @@ const SeleccionEstudiante1 = () => {
                 <div className={styles.div13}>{subjectlab5? 'Si':'No'}</div>
                 <div className={styles.div14}>{subjectcredit5}</div>
               </div>
-              <input className={styles.boxunchecked5} type="checkbox" value={recordid5} onChange={handleCheckboxChange}/>
+              <input className={styles.boxunchecked5} type="radio"   name="radio" value={recordid5} checked={selectedRadio === recordid5} onChange={handleCheckboxChange}/>
             </div>)}
             {(jValue+5 < datalength) && (
             <div className={styles.div15}>
@@ -326,7 +337,7 @@ const SeleccionEstudiante1 = () => {
               </div>
               <div className={styles.div16}>{subjectlab6? 'Si':'No'}</div>
               <div className={styles.div17}>{subjectcredit6}</div>
-              <input className={styles.boxunchecked3} type="checkbox" value={recordid6} onChange={handleCheckboxChange}/>
+              <input className={styles.boxunchecked3} type="radio"   name="radio" value={recordid6} checked={selectedRadio === recordid6} onChange={handleCheckboxChange}/>
             </div> )}
             <b className={styles.retiroDeMateria}>Retiro de materia</b>
           </div>

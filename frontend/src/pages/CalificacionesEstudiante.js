@@ -1,10 +1,54 @@
 import styles from "./CalificacionesEstudiante.module.css";
+import { PDFstyles } from './PDFstyles';
 import React, { useState, useEffect } from "react";
 import jsonData from "./datos.json";
 import axios from 'axios';
+import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, pdf } from '@react-pdf/renderer'; 
+
+
+//Diseño del PDF
+const PDFDocument = ({ data }) => (
+  <Document>
+    <Page size="A4" style={PDFstyles.page}>
+      {data.map((subjectData, i) => (
+        <View style={PDFstyles.section} key={i}>
+          <Text style={PDFstyles.title}>{subjectData.subject.name}</Text>
+          <Text style={PDFstyles.subtitle}>Midterm Grade: {subjectData.midterm_grade}</Text>
+          <Text style={PDFstyles.subtitle}>Final Grade: {subjectData.final_grade}</Text>
+          <Text style={PDFstyles.subtitle}>Final Grade Letter: {subjectData.final_grade_letter}</Text>
+        </View>
+      ))}
+    </Page>
+  </Document>
+);
 
   const CalificacionesEstudiante = () => {
 
+
+    const { access } = JSON.parse(localStorage.getItem('token'));
+    const config = {
+      headers: {
+        Authorization: `Bearer ${access}`,
+      },
+    };      
+
+    // Generar documento PDF
+  const handleDownload = async () => {
+    try {
+
+      const { data } = await axios.get('http://localhost:8000/api/v1/students/profile/grades/', config);
+
+      const pdfBlob = await pdf(<PDFDocument data={data} />).toBlob();
+      const url = URL.createObjectURL(pdfBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Reporte Calificaciones.pdf';
+      document.body.appendChild(link);
+      link.click();
+    } catch (error) {
+      console.error(error);
+    }
+  };
     //code subject
     const [subjectcode1, setSubjectcode1] = useState("");
     const [subjectcode2, setSubjectcode2] = useState("");
@@ -85,13 +129,7 @@ import axios from 'axios';
   
     useEffect(() => {
       
-      const { access } = JSON.parse(localStorage.getItem('token'));
       setActive(access);
-      const config = {
-        headers: {
-          Authorization: `Bearer ${access}`,
-        },
-      };      
 
       async function getSubjects() {
 
@@ -383,7 +421,7 @@ import axios from 'axios';
             onChange={handleChange}
           />
           <div className={styles.trimestre3}>Trimestre 3</div>
-          <button className={styles.rectangleParent}>
+          <button className={styles.rectangleParent} onClick={handleDownload}>
             <div className={styles.groupItem} />
             <div className={styles.eldownloadAltParent}>
               <img

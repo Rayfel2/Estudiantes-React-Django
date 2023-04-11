@@ -1,10 +1,152 @@
 import styles from "./DashboardEstudiante2.module.css";
+import { PDFstyles } from './PDFstyles';
 import React, { useState, useEffect } from 'react';
 import jsonData from "./datos.json";
 import axios from 'axios';
+import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, pdf } from '@react-pdf/renderer'; 
+import { Bar, Line } from 'react-chartjs-2';
+
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    BarElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler,
+} from 'chart.js';
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    BarElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+);
+// Diagrama de barras
+var baroptions = {
+  maintainAspectRatio: false, // Desactivar la relación de aspecto fija
+  plugins: {
+    legend: {
+      display: false
+    },
+  responsive: true,
+    plugins : {
+        legend : {
+            display : false
+        }
+    },
+    scales : {
+        y : {
+            min : 0,
+            max : 100,
+        },
+        x: {
+            ticks: { color: 'rgba(1,126,250)'}
+        }
+    }
+}
+};
+
+var mapbarchart = {
+    labels: '',
+    datasets: [
+        {
+            label: null,
+            data: null,
+            backgroundColor: null
+        }
+    ]
+};
+// Diagrama de lineas
+
+
+var maplineschart = {
+  labels: null,
+  datasets: [ // Cada una de las líneas del gráfico
+      {
+          label: null,
+          data: null,
+          tension: null,
+          fill : null,
+          borderColor: null,
+          backgroundColor: null,
+          pointRadius: null,
+          pointBorderColor: null,
+          pointBackgroundColor: null,
+      }
+  ],
+};
+
+var lineoptions = {
+  plugins: {
+    legend: {
+      display: false // Ocultar la leyenda
+    }
+  },
+  scales : {
+      y : {
+          min : 0,
+          max : 4
+      },
+      x: {
+          ticks: { color: 'rgba(1,126,250)'}
+      }
+  }
+};
+
+//Diseño del PDF
+const PDFDocument = ({ data }) => (
+  <Document>
+    <Page size="A4" style={PDFstyles.page}>
+      {data.map((subjectData, i) => (
+        <View style={PDFstyles.section} key={i}>
+          <Text style={PDFstyles.title}>{subjectData.subject.name}</Text>
+          <Text style={PDFstyles.subtitle}>Midterm Grade: {subjectData.midterm_grade}</Text>
+          <Text style={PDFstyles.subtitle}>Final Grade: {subjectData.final_grade}</Text>
+          <Text style={PDFstyles.subtitle}>Final Grade Letter: {subjectData.final_grade_letter}</Text>
+        </View>
+      ))}
+    </Page>
+  </Document>
+);
 
 const DashboardEstudiante2 = () => {
-    
+
+        
+  const { access } = JSON.parse(localStorage.getItem('token'));
+  const config = {
+    headers: {
+      Authorization: `Bearer ${access}`,
+    },
+  };     
+
+  // Generar documento PDF
+  const handleDownload = async () => {
+    try {
+
+      const { data } = await axios.get('http://localhost:8000/api/v1/students/profile/grades/', config);
+
+          // Crear URL local y descargar archivo
+    const pdfBlob = await pdf(<PDFDocument data={data} />).toBlob(); //se genera el documento
+    const url = URL.createObjectURL(pdfBlob); // crear URL temporal con los datos del documento
+    const link = document.createElement('a'); // crea un a(un link)
+    link.href = url; // se le asigna el URL al link
+    link.download = 'example.pdf'; //Nombre del documento
+    document.body.appendChild(link); // Se añade el enlace como hijo del elemento body
+    link.click(); // Se simula que el usuario hizo clic en el enlace 
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
     //Name subject
     const [subjectname1, setSubjectname1] = useState("");
@@ -41,6 +183,11 @@ const DashboardEstudiante2 = () => {
     const [jValue, setJValue] = useState(0);
     const [datalength, setDatalength] = useState(0);
 
+   // const [chart, setChart] = useState({});
+   const [barchart, setBarChart] = useState(mapbarchart);
+   const [linechart, setLinesChart] = useState(maplineschart);
+   
+
 
 
     function handleNextClick() {
@@ -53,13 +200,7 @@ const DashboardEstudiante2 = () => {
 
   
     useEffect(() => {
-      
-      const { access } = JSON.parse(localStorage.getItem('token'));
-      const config = {
-        headers: {
-          Authorization: `Bearer ${access}`,
-        },
-      };      
+ 
 
       async function getSubjects() {
 
@@ -116,8 +257,10 @@ const DashboardEstudiante2 = () => {
             default:
               break;
           }
+
           }
         
+            
 
       }
       getSubjects();
@@ -144,24 +287,65 @@ const DashboardEstudiante2 = () => {
         const total = data.reduce((accumulator, record) => accumulator + record.taken_credits, 0);
         setTotalCredits(total);
         setTotalQuarter(data.length);
+        const index = [0, ...data.map(item => item.overall_gpa)];
+        setLinesChart({
+          labels: [...Array(30).keys()].map((n) => n),
+          datasets: [ // Cada una de las líneas del gráfico
+              {
+                  label: '',
+                  data: index,
+                  tension: 0.5,
+                  fill : true,
+                  borderColor: 'rgba(1,126,250)',
+                  backgroundColor: 'rgba(1,126,250, 0.5)',
+                  pointRadius: 5,
+                  pointBorderColor: 'rgba(1,126,250)',
+                  pointBackgroundColor: 'rgba(1,126,250)',
+              },
+          ],
+        });
+      
 
   
       } 
-        getRecord();
-      
+       getRecord();
+         async function fetchData() {
+          try {
+            const response = await axios.get('http://localhost:8000/api/v1/students/profile/grades/', config);
+            const grades = response.data;
+            //window.alert(grades);
+            const labels = grades.map(item => item.subject.code)//.flatMap(value => [value, value, value, value, value, value, value, value, value, value]);
+            //window.alert(labels);
+            const values = grades.map(item => item.final_grade)//.flatMap(value => [value, value, value, value, value, value, value, value, value, value]);
+            //window.alert(values);
+            setBarChart({
+              labels: labels,
+              datasets: [{
+                label: null,
+                data: values,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+              }],
+            });
+          } catch (error) {
+            console.error('Error al cargar los datos:', error);
+          }
+        }
+    
+        fetchData();
+
     }, [jValue]);
+   
   return (
+    
     <div className={styles.dashboardEstudiante2}>
+           
       <div className={styles.header}>
         <div className={styles.headerChild} />
         <div className={styles.headerItem} />
         <div className={styles.searchBar}>
           <div className={styles.searchBarChild} />
-          <input
-            className={styles.searchBarItem}
-            type="text"
-            placeholder="Search"
-          />
         </div>
         <div className={styles.tanggalanParent}>
           <div className={styles.tanggalan}>
@@ -403,12 +587,15 @@ const DashboardEstudiante2 = () => {
             <div className={styles.trophy8}>Calif</div>
             <div className={styles.trophy9}>Medio termino</div>
           </div>
-          <img
-            className={styles.dashboardInner}
-            alt=""
-            src="/rectangle-90.svg"
-          />
+
+
         </div>
+        <div className={styles.rectangleWrapper3}>
+        <div className="bg-light mx-auto px-2 border border-2 border-primary" style={{width:"500px"}}>
+          <Line className={styles.reporteItem} data={linechart} options={lineoptions}/>
+          </div>
+          </div>
+
         <b className={styles.dashboard3}>Dashboard</b>
         {(datalength > (jValue+5)) && (
         <b className={styles.siguiente} onClick={handleNextClick}>
@@ -422,18 +609,23 @@ const DashboardEstudiante2 = () => {
       )}
       </div>
       <div className={styles.reporte}>
+
         <div className={styles.reporteChild} />
         <div className={styles.groupContainer}>
           <div className={styles.parent3}>
             <div className={styles.div}>{quarterlyIndex}</div>
             <div className={styles.indiceTrimestral}>Indice trimestral</div>
           </div>
-          <div className={styles.rectangleWrapper}>
+
+
             <div className={styles.groupChild7} />
+
+            <div className={styles.rectangleWrapper2}>
+          <Bar data={barchart} options={baroptions}/>
           </div>
         </div>
         <div className={styles.listItems}>
-          <button className={styles.constructorOverflowMenu}>
+          <button className={styles.constructorOverflowMenu } onClick={handleDownload}>
             <div className={styles.textElementsTitle}>
               <p className={styles.title}>Download report</p>
             </div>
@@ -474,8 +666,10 @@ const DashboardEstudiante2 = () => {
             </div>
           </div>
         </div>
-        <img className={styles.reporteItem} alt="" src="/rectangle-901.svg" />
+
+       
       </div>
+
     </div>
   );
 };
