@@ -628,6 +628,8 @@
   font-size: inherit;
   font-weight: 700;
   font-family: inherit;
+  white-space: nowrap;
+  text-align: center; 
 }
 .estudiante {
   top: 19px;
