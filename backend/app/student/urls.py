@@ -19,4 +19,5 @@ urlpatterns = (
         views.StudentProfileAcademicRecordView.as_view(),
         name="academic-record",
     ),
+    path('reset-password/', views.PasswordResetView.as_view(), name='password-reset')
 )

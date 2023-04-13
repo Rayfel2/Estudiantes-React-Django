@@ -209,3 +209,19 @@ class SubjectWithProfessorSerializer(serializers.ModelSerializer):
         model = models.Subject
         fields = "__all__"
         read_only_fields = ("id",)
+
+class PasswordResetSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    new_password = serializers.CharField(min_length=8, write_only=True)
+    confirm_new_password = serializers.CharField(min_length=8, write_only=True)
+
+    def validate(self, attrs):
+        if attrs['new_password'] != attrs['confirm_new_password']:
+            raise serializers.ValidationError("Las contraseñas no coinciden")
+        return attrs
+
+    def update(self, instance, validated_data):
+        instance.set_password(validated_data['new_password'])
+        instance.save()
+        return instance
+
