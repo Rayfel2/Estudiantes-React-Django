@@ -3,6 +3,10 @@ from django.urls import reverse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.contrib.auth import get_user_model
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -113,3 +117,20 @@ class StudentProfileAcademicRecordView(APIView):
                 response,
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
+
+User = get_user_model()
+
+class PasswordResetView(APIView):
+    serializer_class = serializers.PasswordResetSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            try:
+                user = User.objects.get(email=serializer.validated_data['email'])
+                serializer.update(user, serializer.validated_data)
+                return Response({"detail": "Contraseña actualizada con éxito"}, status=status.HTTP_200_OK)
+            except User.DoesNotExist:
+                return Response({"detail": "No se encontró un usuario con ese correo electrónico"}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
