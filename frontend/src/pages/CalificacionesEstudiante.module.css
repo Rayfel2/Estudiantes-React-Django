@@ -21,7 +21,7 @@
   top: 0;
   left: 0;
   border-radius: var(--br-base);
-  background-color: var(--white);
+  background-color: var(--putih);
   width: 352px;
   height: 48px;
 }
@@ -29,7 +29,7 @@
   border: 0;
   font-weight: 500;
   font-family: var(--font-montserrat);
-  font-size: var(--desktop-body-button-button-text-small-size);
+  font-size: var(--typography-label-large-size);
   background-color: transparent;
   position: absolute;
   top: 12px;
@@ -48,7 +48,7 @@
 .tanggalanChild {
   left: 0;
   border-radius: var(--br-base);
-  background-color: var(--white);
+  background-color: var(--putih);
   width: 240px;
 }
 .marzo202023 {
@@ -87,120 +87,119 @@
   height: 67px;
   color: var(--satu);
 }
-.calificacionesEstudianteChild {
+.rectangle {
   position: absolute;
-  top: 285px;
-  left: 336px;
-  border-radius: var(--br-base);
-  width: 994px;
-  height: 607px;
-}
-.calificacion {
-  position: absolute;
-  height: 21.21%;
-  width: 6.71%;
-  top: 77.27%;
-  left: 81.68%;
-  display: inline-block;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-13xl);
+  background-color: var(--putih);
+  width: 995px;
+  height: 925px;
 }
 .backgroundIcon,
-.ins32602 {
+.code1 {
   position: absolute;
-  height: 33.33%;
-  top: 0;
+  height: 2.38%;
+  top: 13.31%;
 }
 .backgroundIcon {
-  width: 11.05%;
-  right: 88.9%;
-  bottom: 66.67%;
-  left: 0.05%;
+  width: 9.06%;
+  right: 87.88%;
+  bottom: 84.31%;
+  left: 3.06%;
   border-radius: var(--br-16xl);
   max-width: 100%;
   overflow: hidden;
   max-height: 100%;
 }
-.ins32602 {
+.code1 {
   margin: 0;
-  width: 11.1%;
-  left: 0;
+  width: 9.1%;
+  left: 3.02%;
   font-size: var(--font-size-3xs);
   line-height: 24px;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--color-whitesmoke-200);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.estructuraDeDatos {
+.b,
+.materia1,
+.puntos {
   position: absolute;
-  height: 25.76%;
-  width: 33.5%;
-  top: 50%;
-  left: 0.04%;
-  font-size: var(--desktop-body-button-button-text-small-size);
+  height: 1.84%;
+  display: inline-block;
+}
+.materia1 {
+  width: 27.49%;
+  top: 16.88%;
+  left: 3.04%;
+  font-size: var(--subheadline-16-size);  /* --typography-label-large-siz */
   letter-spacing: -0.24px;
   color: var(--headline);
   text-align: left;
-  display: inline-block;
-}
-.a,
-.puntos {
-  position: absolute;
-}
-.a {
-  height: 65.15%;
-  width: 5.69%;
-  top: 0;
-  left: 81.68%;
-  font-size: var(--font-size-10xl);
-  display: inline-block;
-  font-family: var(--font-museomoderno);
-}
-.puntos {
-  height: 25.76%;
-  width: 6.71%;
-  top: 74.24%;
-  left: 93.29%;
 }
 .b,
-.notaFinal,
 .puntos {
-  display: inline-block;
+  width: 5.51%;
+  top: 18.61%;
+  left: 79.56%;
+  font-size: var(--font-size-2xs);
 }
 .b {
-  position: absolute;
-  height: 65.15%;
-  width: 5.69%;
-  top: 0;
-  left: 93.81%;
-  font-size: var(--font-size-10xl);
+  height: 4.65%;
+  width: 4.67%;
+  top: 13.31%;
+  left: 79.98%;
+  font-size: var(--font-size-5xl);
   font-family: var(--font-museomoderno);
 }
-.notaFinal {
-  height: 25.76%;
-  width: 6.71%;
-  top: 74.24%;
-  left: 69.94%;
+.calificacion {
+  height: 1.52%;
+  width: 5.51%;
+  top: 18.83%;
+  left: 70.03%;
+  font-size: var(--font-size-2xs);
 }
 .b1,
-.creditos,
+.calificacion,
+.na,
 .notaFinal {
   position: absolute;
-}
-.b1 {
-  height: 65.15%;
-  width: 5.69%;
-  top: 0;
-  left: 58.74%;
-  font-size: var(--font-size-10xl);
   display: inline-block;
+}
+.na {
+  height: 4.65%;
+  width: 4.67%;
+  top: 13.85%;
+  left: 70.23%;
+  font-size: var(--font-size-5xl);
   font-family: var(--font-museomoderno);
 }
-.creditos {
-  height: 25.76%;
-  width: 8.02%;
-  top: 74.24%;
-  left: 45.42%;
+.b1,
+.notaFinal {
+  height: 1.84%;
+  width: 5.51%;
+  top: 18.61%;
+  left: 60.4%;
+  font-size: var(--font-size-2xs);
+}
+.b1 {
+  height: 4.65%;
+  width: 4.67%;
+  top: 13.31%;
+  left: 60.61%;
+  font-size: var(--font-size-5xl);
+  font-family: var(--font-museomoderno);
+}
+.medioTermino {
+  position: absolute;
+  height: 1.84%;
+  width: 4.78%;
+  top: 18.61%;
+  left: 50.97%;
+  font-size: var(--font-size-2xs);
 }
 .b2,
 .creditos,
@@ -209,92 +208,42 @@
 }
 .b2 {
   position: absolute;
-  height: 65.15%;
-  width: 5.69%;
-  top: 0;
-  left: 46.58%;
-  font-size: var(--font-size-10xl);
+  height: 4.65%;
+  width: 4.67%;
+  top: 13.31%;
+  left: 51.21%;
+  font-size: var(--font-size-5xl);
   font-family: var(--font-museomoderno);
 }
-.medioTermino {
-  height: 25.76%;
-  width: 5.82%;
-  top: 74.24%;
-  left: 58.45%;
+.creditos {
+  height: 1.84%;
+  width: 6.58%;
+  top: 18.61%;
+  left: 40.28%;
+  font-size: var(--font-size-2xs);
 }
 .b3,
-.g1,
-.medioTermino {
+.creditos,
+.g1 {
   position: absolute;
 }
 .b3 {
-  height: 65.15%;
-  width: 5.69%;
-  top: 0;
-  left: 70.19%;
-  font-size: var(--font-size-10xl);
+  height: 4.65%;
+  width: 4.67%;
+  top: 13.31%;
+  left: 41.23%;
+  font-size: var(--font-size-5xl);
   display: inline-block;
   font-family: var(--font-museomoderno);
 }
 .g1 {
-  height: 11.68%;
-  width: 82.98%;
-  top: 21.42%;
-  right: 17.02%;
-  bottom: 66.9%;
+  top: 0;
   left: 0;
-}
-.calificacion1 {
-  height: 20.29%;
-  width: 6.73%;
-  top: 75.36%;
-  left: 81.24%;
-}
-.b4,
-.b5,
-.b6,
-.b7,
-.calificacion1,
-.notaFinal1 {
-  position: absolute;
-  display: inline-block;
-}
-.b4 {
-  height: 62.32%;
-  width: 5.71%;
-  top: 4.35%;
-  left: 93.79%;
-  font-size: var(--font-size-10xl);
-  font-family: var(--font-museomoderno);
-}
-.b5,
-.b6,
-.b7,
-.notaFinal1 {
-  height: 24.64%;
-  width: 6.73%;
-  top: 75.36%;
-  left: 69.86%;
-}
-.b5,
-.b6,
-.b7 {
-  height: 62.32%;
-  width: 5.71%;
-  top: 4.35%;
-  left: 58.63%;
-  font-size: var(--font-size-10xl);
-  font-family: var(--font-museomoderno);
-}
-.b6,
-.b7 {
-  left: 46.44%;
-}
-.b7 {
-  left: 70.12%;
+  width: 995px;
+  height: 925px;
 }
 .backgroundIcon1,
-.ins32601 {
+.code2 {
   position: absolute;
   height: 31.88%;
   top: 0;
@@ -309,103 +258,183 @@
   overflow: hidden;
   max-height: 100%;
 }
-.ins32601 {
+.code2 {
   margin: 0;
   width: 11.13%;
   left: 0;
   font-size: var(--font-size-3xs);
   line-height: 24px;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--color-whitesmoke-200);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.materia2 {
+  position: absolute;
+  height: 49.28%;
+  width: 33.59%;
+  top: 47.83%;
+  left: 0.04%;
+  font-size: var(--subheadline-16-size);
+  letter-spacing: -0.24px;
+  color: var(--headline);
+  text-align: left;
+  display: inline-block;
+}
+.creditos1 {
+  height: 24.64%;
+  width: 8.04%;
+  top: 75.36%;
+  left: 45.27%;
+  font-size: var(--font-size-2xs);
+}
+.b4,
+.b5,
 .creditos1,
-.medioTermino1,
+.medioTermino1 {
+  position: absolute;
+  display: inline-block;
+}
+.b4 {
+  height: 62.32%;
+  width: 5.71%;
+  top: 4.35%;
+  left: 46.44%;
+  font-size: var(--font-size-5xl);
+  font-family: var(--font-museomoderno);
+}
+.b5,
+.medioTermino1 {
+  height: 24.64%;
+  width: 5.84%;
+  top: 75.36%;
+  left: 58.34%;
+  font-size: var(--font-size-2xs);
+}
+.b5 {
+  height: 62.32%;
+  width: 5.71%;
+  top: 4.35%;
+  left: 58.63%;
+  font-size: var(--font-size-5xl);
+  font-family: var(--font-museomoderno);
+}
+.notaFinal1 {
+  height: 24.64%;
+  width: 6.73%;
+  top: 75.36%;
+  left: 69.86%;
+  font-size: var(--font-size-2xs);
+}
+.b6,
+.calificacion1,
+.notaFinal1 {
+  position: absolute;
+  display: inline-block;
+}
+.b6 {
+  height: 62.32%;
+  width: 5.71%;
+  top: 4.35%;
+  left: 70.12%;
+  font-size: var(--font-size-5xl);
+  font-family: var(--font-museomoderno);
+}
+.calificacion1 {
+  height: 20.29%;
+  width: 6.73%;
+  top: 75.36%;
+  left: 81.24%;
+  font-size: var(--font-size-2xs);
+}
+.na1 {
+  position: absolute;
+  height: 62.32%;
+  width: 5.71%;
+  top: 4.35%;
+  left: 81.63%;
+  font-size: var(--font-size-5xl);
+  font-family: var(--font-museomoderno);
+}
+.b7,
+.na1,
+.puntos1 {
+  display: inline-block;
+}
 .puntos1 {
   position: absolute;
   height: 24.64%;
   width: 6.73%;
   top: 75.36%;
   left: 93.27%;
-  display: inline-block;
+  font-size: var(--font-size-2xs);
 }
-.creditos1,
-.medioTermino1 {
-  width: 8.04%;
-  left: 45.27%;
-}
-.medioTermino1 {
-  width: 5.84%;
-  left: 58.34%;
-}
-.g2 {
-  position: absolute;
-  height: 12.21%;
-  width: 82.76%;
-  top: 43.54%;
-  right: 17.02%;
-  bottom: 44.25%;
-  left: 0.21%;
-}
-.i,
-.laboratorioDeEstructura {
-  position: absolute;
-  display: inline-block;
-}
-.laboratorioDeEstructura {
-  height: 49.28%;
-  width: 33.59%;
-  top: 47.83%;
-  left: 0.04%;
-  font-size: var(--desktop-body-button-button-text-small-size);
-  letter-spacing: -0.24px;
-  color: var(--headline);
-  text-align: left;
-}
-.i {
+.b7 {
   height: 62.32%;
   width: 5.71%;
   top: 4.35%;
-  left: 81.63%;
-  font-size: var(--font-size-10xl);
+  left: 93.79%;
+  font-size: var(--font-size-5xl);
   font-family: var(--font-museomoderno);
 }
-.g4 {
-  height: 12.21%;
-  width: 82.76%;
-  top: 87.79%;
-  right: 17.02%;
-  bottom: 0;
-  left: 0.21%;
-}
-.g3,
-.g4,
-.i1 {
+.b7,
+.g2,
+.na2 {
   position: absolute;
 }
-.i1 {
+.g2 {
+  height: 7.47%;
+  width: 81.84%;
+  top: 26.84%;
+  right: 14.94%;
+  bottom: 65.69%;
+  left: 3.23%;
+}
+.na2 {
   height: 78.26%;
   width: 7.5%;
   top: 4.35%;
   left: 80.47%;
-  font-size: var(--font-size-10xl);
+  font-size: var(--font-size-5xl);
   display: inline-block;
   font-family: var(--font-museomoderno);
 }
-.g3 {
-  height: 12.21%;
-  width: 82.76%;
-  top: 66.02%;
-  right: 17.02%;
-  bottom: 21.77%;
-  left: 0.21%;
+.g3,
+.g4,
+.g5,
+.g6 {
+  position: absolute;
+  height: 7.47%;
+  width: 81.84%;
+  top: 40.58%;
+  right: 14.94%;
+  bottom: 51.95%;
+  left: 3.23%;
+}
+.g4,
+.g5,
+.g6 {
+  top: 53.9%;
+  bottom: 38.64%;
+}
+.g5,
+.g6 {
+  top: 67.24%;
+  right: 15.15%;
+  bottom: 25.29%;
+  left: 3.02%;
+}
+.g6 {
+  top: 80.97%;
+  right: 14.85%;
+  bottom: 11.56%;
+  left: 3.32%;
 }
 .selectSimple {
   position: absolute;
-  top: 53.61px;
-  left: 2.06px;
+  top: 55.61px;
+  left: 32.06px;
   width: 250.71px;
   height: 48.05px;
   display: flex;
@@ -415,8 +444,8 @@
 }
 .trimestre3 {
   position: absolute;
-  top: 17.02px;
-  left: -22.12px;
+  top: 19.02px;
+  left: 7.88px;
   font-size: var(--font-size-xs);
   line-height: 100%;
   font-weight: 500;
@@ -445,7 +474,7 @@
 }
 .pdf {
   position: relative;
-  font-size: var(--desktop-headlines-h5-size);
+  font-size: var(--subheadline-16-size);
   font-family: var(--font-montserrat);
   color: var(--color-gray-300);
   text-align: left;
@@ -466,19 +495,17 @@
   padding: 0;
   background-color: transparent;
   position: absolute;
-  top: 0;
-  left: 871.17px;
+  top: 2px;
+  left: 882.17px;
   width: 112.71px;
   height: 40.04px;
 }
 .g1Parent {
   position: absolute;
-  height: 45.87%;
-  width: 56.94%;
-  top: 18.73%;
-  right: 22.11%;
-  bottom: 35.39%;
-  left: 20.95%;
+  top: 229px;
+  left: 332px;
+  width: 995px;
+  height: 925px;
   text-align: center;
   font-size: var(--font-size-5xs);
 }
@@ -490,51 +517,49 @@
   line-height: 22px;
   color: var(--satu);
 }
-.chartCardWithIcon,
-.rectangle {
+.rectangle1 {
   position: absolute;
-  border-radius: var(--br-13xl);
-  background-color: var(--white);
-  width: 346px;
-}
-.chartCardWithIcon {
-  top: 811px;
-  left: calc(50% + 498px);
-  box-shadow: 0 4px 20px #e8ecff;
-}
-.rectangle {
   top: 0;
   left: 0;
+  border-radius: var(--br-13xl);
+  background-color: var(--putih);
+  width: 346px;
   height: 174px;
 }
-.b16 {
+.b24,
+.sunny {
+  position: absolute;
   top: 38px;
   left: 39px;
   display: inline-block;
   width: 201px;
 }
-.b16,
-.sunny,
-.weather {
-  position: absolute;
-}
 .sunny {
   top: 118px;
-  left: 39px;
   font-size: var(--font-size-smi);
   line-height: 14px;
   color: var(--color-black);
-  display: inline-block;
   width: 173px;
   height: 19px;
 }
+.rectangle2,
 .weather {
-  top: 435px;
+  position: absolute;
+  width: 346px;
+}
+.weather {
+  top: 503px;
   left: 1362px;
   box-shadow: 0 4px 20px #e8ecff;
-  width: 346px;
   height: 174px;
   font-size: var(--font-size-41xl);
+}
+.rectangle2 {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-13xl);
+  background-color: var(--putih);
+  height: 226px;
 }
 .id {
   font-weight: 500;
@@ -559,12 +584,12 @@
 }
 .sunny1 {
   position: absolute;
-  top: 23px;
+  top: 29.87px;
   left: 39px;
   line-height: 14px;
   display: inline-block;
   width: 302px;
-  height: 122px;
+  height: 158.46px;
 }
 .sunny2,
 .weather1 {
@@ -576,7 +601,7 @@
   left: 1362px;
   box-shadow: 0 4px 20px #e8ecff;
   width: 346px;
-  height: 174px;
+  height: 226px;
   font-family: var(--font-poppins);
 }
 .sunny2 {
@@ -589,7 +614,7 @@
 }
 .weather2 {
   position: absolute;
-  top: 623px;
+  top: 721px;
   left: 1362px;
   box-shadow: 0 4px 20px #e8ecff;
   width: 346px;
@@ -684,7 +709,7 @@
   width: 240px;
   height: 651px;
 }
-.materias {
+.retiro {
   position: absolute;
   top: 1px;
   left: 48px;
@@ -694,7 +719,7 @@
   position: absolute;
   top: 307px;
   left: 68px;
-  width: 111px;
+  width: 93px;
   height: 20px;
 }
 .seleccion {
@@ -733,10 +758,8 @@
 .davidFelix,
 .estudiante {
   position: absolute;
-  top: 10px;
   left: 0;
   line-height: 18.69px;
-  
 }
 .davidFelix {
   margin: 0;
@@ -744,13 +767,13 @@
   font-size: inherit;
   font-weight: 700;
   font-family: inherit;
-  color: skyblue;
+  white-space: nowrap;
+  text-align: center; 
 }
 .estudiante {
-  top: 39px;
+  top: 19px;
   text-transform: capitalize;
   color: var(--abupeteng);
-  color: black;
 }
 .davidFelixParent,
 .ellipseParent {
@@ -810,13 +833,13 @@
   left: 37px;
   width: 240px;
   height: 53px;
-  color: var(--white);
+  color: var(--putih);
 }
 .dashboard {
   position: absolute;
-  top: 1px;
+  top: 3px;
   left: 48px;
-  line-height: 24px;
+  line-height: 18.69px;
 }
 .vuesaxlinearhome2Icon {
   position: absolute;
@@ -828,8 +851,8 @@
 .dashboardParent,
 .menuPrincipal {
   position: absolute;
-  top: 206px;
-  left: 65px;
+  top: 207px;
+  left: 68px;
   width: 129px;
   height: 24px;
 }
@@ -840,6 +863,25 @@
   height: 1233px;
   color: var(--satu);
 }
+.anterior,
+.siguiente {
+  position: absolute;
+  top: 1105px;
+  left: 1204px;
+  font-size: var(--subheadline-16-size);
+  letter-spacing: 0.05em;
+  line-height: 18.69px;
+  text-transform: capitalize;
+  display: inline-block;
+  color: var(--dua);
+  width: 110.08px;
+  height: 19.61px;
+}
+.anterior {
+  left: 1084px;
+  color: var(--color-tomato);
+  width: 98.08px;
+}
 .calificacionesEstudiante {
   position: relative;
   background-color: var(--color-gray-100);
@@ -847,7 +889,7 @@
   height: 1233px;
   overflow: hidden;
   text-align: left;
-  font-size: var(--desktop-body-button-button-text-small-size);
+  font-size: var(--typography-label-large-size);
   color: var(--text);
   font-family: var(--font-montserrat);
 }
