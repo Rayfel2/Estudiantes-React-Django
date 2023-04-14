@@ -23,6 +23,7 @@
 .homePage {
   height: calc(100% - 13px);
   top: 52px;
+  left: 100px;
   bottom: -39px;
   left: 19px;
   background-color: var(--white);
@@ -184,8 +185,8 @@
   overflow: hidden;
 }
 .image9Icon {
-  width: 1459px;
-  height: 1317px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 .saly23Icon,
@@ -262,6 +263,7 @@
 .div2 {
   background-color: var(--color-midnightblue-200);
 }
+.div1,
 .div2 {
   width: 16px;
   height: 16px;
@@ -269,8 +271,8 @@
 }
 .pager {
   position: absolute;
-  top: 498px;
-  left: 987px;
+  top: 390px;
+  left: 975px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -291,7 +293,7 @@
 }
 .bienvenidxCompletaContainer {
   position: absolute;
-  top: 397px;
+  top: 300px;
   left: 813px;
   line-height: 200%;
   color: var(--white);
@@ -327,7 +329,7 @@
 .component1Inner {
   position: absolute;
   height: 71.37%;
-  width: 53.74%;
+  width: 57.74%;
   top: 1.34%;
   right: 38.62%;
   bottom: 27.28%;
@@ -342,7 +344,7 @@
   text-decoration: none;
   height: 3.17%;
   width: 13.22%;
-  left: 46.04%;
+  left: 48.04%;
   font-size: var(--desktop-body-button-button-text-small-size);
   letter-spacing: 0.25px;
   line-height: 28px;
@@ -360,6 +362,7 @@
   max-width: 100%;
   overflow: hidden;
   max-height: 100%;
+  top: 64px;
 }
 .groupItem {
   position: absolute;
@@ -403,8 +406,15 @@
   background-color: transparent;
   height: 21.86%;
   width: 89.08%;
-  top: 78.14%;
+  top: 87.14%;
   right: 10.92%;
+}
+
+.groupWrapper:hover,
+.groupWrapper:focus{
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+
 }
 .payments2 {
   position: absolute;
@@ -432,12 +442,14 @@
   left: 0;
 }
 .groupInner {
-  border: 0;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding-left: 10px;
   font-family: var(--font-roboto);
   font-size: var(--desktop-body-button-button-text-small-size);
   background-color: transparent;
   height: 65.75%;
-  width: 100%;
+  width: 85%;
   top: 34.25%;
   right: 0;
   bottom: 0;
@@ -485,7 +497,9 @@
   left: 0;
 }
 .groupChild1 {
-  border: 0;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding-left: 10px;
   background-color: transparent;
   height: 65.75%;
   width: 100%;
@@ -497,15 +511,15 @@
 .groupParent2 {
   position: absolute;
   height: 26.16%;
-  width: 42.55%;
+  width: 43.5%;
   top: 40.14%;
   right: 57.45%;
   bottom: 33.69%;
   left: 0;
 }
 .groupParent2 {
-  right: 10.92%;
-  left: 46.52%;
+  right: 12%;
+  left: 48.5%;
 }
 .groupParent,
 .torusIcon {
@@ -545,7 +559,7 @@
   opacity: 0.2;
 }
 .component1Item {
-  top: 54.32%;
+  top: 56.32%;
   right: 41.81%;
   bottom: 45.58%;
   left: 10.76%;
@@ -592,11 +606,12 @@
   text-align: left;
 }
 .component1 {
-  position: absolute;
+  position: relative;
   top: 120px;
-  left: 19px;
+  left: 230px;
   width: 1362px;
   height: 1041px;
+  border-radius: 35px;
 }
 .registrarUsuario {
   position: relative;

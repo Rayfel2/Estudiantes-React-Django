@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom';
 const LogIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -25,16 +26,30 @@ const LogIn = () => {
   const handleLogin = async (e) => {
   e.preventDefault();
   
-  const {data} = await axios.post("http://localhost:8000/api/v1/students/login/",
-  {
-    username: username,
-    password: password
+  try {
+    const {data} = await axios.post("http://localhost:8000/api/v1/students/login/", {
+      username: username,
+      password: password
+    });
+    setUser("student");
+  
+    localStorage.setItem('token', JSON.stringify(data));
+    navigate("/dashboard-estudiante2");
+  } catch (error) {
+    try {
+      const {data} = await axios.post("http://localhost:8000/api/v1/professor/login/", {
+        username: username,
+        password: password
+      });
+      setUser("profesor");
+  
+      localStorage.setItem('token', JSON.stringify(data));
+      navigate("/dashboard-profesor");
+    } catch (error) {
+      window.alert("El correo o la contraseña esta incorrecta");
+    }
   }
-  )
-
-  localStorage.setItem('token', JSON.stringify(data));
-  navigate("/dashboard-estudiante2")
-
+};
   //const validEmail = "usuario@email.com";
   //const validPassword = "usuario";
   
@@ -53,7 +68,7 @@ const LogIn = () => {
   console.log("handleLogin function executed!"); // Agregar este console.log
 */
 
-};
+
 const handleShowLoginForm = () => {
   const loginForm = document.querySelector('#loginForm');
   loginForm.style.display = 'flex';

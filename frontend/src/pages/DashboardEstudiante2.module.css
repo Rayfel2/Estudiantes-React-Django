@@ -1041,11 +1041,24 @@
   left: 27px;
   height: 72px;
 }
+
 .title {
   margin: 0;
   align-self: stretch;
   position: relative;
   font-size: var(--typography-label-large-size);
+  letter-spacing: 0.1px;
+  line-height: 20px;
+  font-weight: 500;
+  font-family: var(--typography-label-large);
+  color: var(--color-aliceblue-100);
+  text-align: left;
+}
+.download {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: var(--desktop-headlines-h5-size);
   letter-spacing: 0.1px;
   line-height: 20px;
   font-weight: 500;

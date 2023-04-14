@@ -5,6 +5,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import LogIn from "./pages/LogIn";
+import DashboardProfesor from "./pages/DashboardProfesor";
 import VerPerfil from "./pages/VerPerfil";
 import REGISTRARUSUARIO from "./pages/REGISTRARUSUARIO";
 import DashboardEstudiante2 from "./pages/DashboardEstudiante2";
@@ -97,6 +98,7 @@ function App() {
         path="/calificaciones-estudiante"
         element={<CalificacionesEstudiante />}
       />
+      <Route path="/dashboard-profesor" element={<DashboardProfesor />} />
     </Routes>
   );
 }

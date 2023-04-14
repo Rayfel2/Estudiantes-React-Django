@@ -1,6 +1,46 @@
 import styles from "./REGISTRARUSUARIO.module.css";
+import React, { useState } from 'react';
+import axios from "axios";
+import {useNavigate} from 'react-router-dom';
+
 
 const REGISTRARUSUARIO = () => {
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [confirmpassword, setConfirmPassword] = useState("");
+const [errorMessage, setErrorMessage] = useState("");
+
+const navigate = useNavigate();
+
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleRecovery = async (e) => {
+    if (password == confirmpassword){
+    e.preventDefault();
+  
+    
+    const {data} = await axios.post("http://localhost:8000/api/v1/students/login/",
+    {
+      email: email,
+      new_password: password,
+      confirm_new_password: confirmpassword
+    }
+    )
+    navigate("/dashboard-estudiante2");
+  }
+  }
+
   return (
     <div className={styles.registrarUsuario}>
       <div className={styles.homePage}>
@@ -38,17 +78,17 @@ const REGISTRARUSUARIO = () => {
           </div>
           <div className={styles.button1}>
             <div className={styles.iconsContainer}>
-              <img className={styles.icons2} alt="" src="/icons7.svg" />
+             
               <div className={styles.webDesigns}>Sign up</div>
             </div>
           </div>
         </div>
         <div className={styles.divider} />
       </div>
-      <img className={styles.image9Icon} alt="" src="/image-9@2x.png" />
+      <img className={styles.image9Icon} alt="" src="/image-9@2x.jpg" />
       <form className={styles.component1}>
         <div className={styles.torus2}>
-          <img className={styles.saly23Icon} alt="" src="/saly23@2x.png" />
+
         </div>
         <div className={styles.registro}>
           <div className={styles.form2}>
@@ -77,7 +117,7 @@ const REGISTRARUSUARIO = () => {
         </a>
         <img className={styles.vectorIcon} alt="" src="/vector1.svg" />
         <div className={styles.groupParent}>
-          <button className={styles.groupWrapper}>
+          <button className={styles.groupWrapper} onClick={handleRecovery}>
             <div className={styles.rectangleParent}>
               <div className={styles.groupItem} />
               <b className={styles.payments1}>RECUPERAR</b>
@@ -89,30 +129,35 @@ const REGISTRARUSUARIO = () => {
             </div>
             <input
               className={styles.groupInner}
-              type="text"
-              placeholder="John"
+              type="text" 
+              value={email}
+              onChange={handleEmailChange}
             />
-          </div>
-          <div className={styles.groupDiv}>
-            <div className={styles.paymentsWrapper}>
-              <div className={styles.payments3}>CODIGO</div>
-            </div>
-            <input className={styles.groupInner} type="text" />
           </div>
           <div className={styles.groupParent1}>
             <div className={styles.paymentsFrame}>
               <div className={styles.payments3}>Password</div>
             </div>
-            <input className={styles.groupChild1} type="text" />
+            <input
+              className={styles.groupChild1}
+              type="password" 
+              value={password}
+              onChange={handlePasswordChange}
+            />
           </div>
           <div className={styles.groupParent2}>
             <div className={styles.paymentsFrame}>
               <div className={styles.payments3}>Confirm password</div>
             </div>
-            <input className={styles.groupChild1} type="text" />
+            <input
+              className={styles.groupChild1}
+              type="password" 
+              value={confirmpassword}
+              onChange={handleConfirmPasswordChange}
+            />
           </div>
         </div>
-        <img className={styles.torusIcon} alt="" src="/torus@2x.png" />
+
         <div className={styles.component1Child} />
         <div className={styles.component1Item} />
         <div className={styles.lineDiv} />

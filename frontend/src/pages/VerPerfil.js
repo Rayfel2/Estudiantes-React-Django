@@ -4,6 +4,8 @@ import jsonData from "./datos.json";
 import axios from 'axios';
 
 const VerPerfil = () => {
+
+
   const { access } = JSON.parse(localStorage.getItem('token'));
   const config = {
     headers: {
@@ -15,13 +17,28 @@ const VerPerfil = () => {
   const [useremail, setUseremail] = useState("");
   const [userbirth, setUserbirth] = useState("");
   const [userid, setUserid] = useState("");
+  const [subjectData, setSubjectData] = useState("");
 
   async function getProfile() {
-    const { data }  = await axios.get(
-      'http://localhost:8000/api/v1/students/profile/',
-      config
-    );
-    const subjectData = data;
+    try {
+      const { data }  = await axios.get(
+        'http://localhost:8000/api/v1/students/profile/',
+        config
+      );
+      setSubjectData(data);
+    } catch (error) {
+      try {
+        const { data }  = await axios.get(
+          'http://localhost:8000/api/v1/professor/profile/',
+          config
+        );
+        setSubjectData(data);
+
+      } catch (error) {
+      }
+  };
+
+   
     const { user: {first_name, last_name, email, birth_date, document_no}} = subjectData;
   setUsername(first_name);
   setUserlastname(last_name);
@@ -89,13 +106,13 @@ const VerPerfil = () => {
             />
             <div className={styles.id}>ID</div>
           </div>
+          <a href = "/">
           <button className={styles.frameWrapper}>
-            <a href = "/dashboard-estudiante2">
             <button className={styles.regresarWrapper}>
               <div className={styles.regresar}>REGRESAR</div>
             </button>
-            </a>
           </button>
+          </a>
         </div>
         <div className={styles.configuracion}>Configuracion</div>
         <div className={styles.verPerfilItem} />

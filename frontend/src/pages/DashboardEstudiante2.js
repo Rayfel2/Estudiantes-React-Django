@@ -109,9 +109,11 @@ const PDFDocument = ({ data }) => (
       {data.map((subjectData, i) => (
         <View style={PDFstyles.section} key={i}>
           <Text style={PDFstyles.title}>{subjectData.subject.name}</Text>
-          <Text style={PDFstyles.subtitle}>Midterm Grade: {subjectData.midterm_grade}</Text>
-          <Text style={PDFstyles.subtitle}>Final Grade: {subjectData.final_grade}</Text>
-          <Text style={PDFstyles.subtitle}>Final Grade Letter: {subjectData.final_grade_letter}</Text>
+          <Text style={PDFstyles.subtitle}>Profesor: {subjectData.subject.professor.user.first_name} {subjectData.subject.professor.user.last_name}</Text>
+          <Text style={PDFstyles.subtitle}>Creditos: {subjectData.subject.credits}</Text>
+          <Text style={PDFstyles.subtitle}>Medio Termino: {subjectData.midterm_grade}</Text>
+          <Text style={PDFstyles.subtitle}>Calificacion final: {subjectData.final_grade}</Text>
+          <Text style={PDFstyles.subtitle}>Letra de la calificacion final: {subjectData.final_grade_letter}</Text>
         </View>
       ))}
     </Page>
@@ -139,7 +141,7 @@ const DashboardEstudiante2 = () => {
     const url = URL.createObjectURL(pdfBlob); // crear URL temporal con los datos del documento
     const link = document.createElement('a'); // crea un a(un link)
     link.href = url; // se le asigna el URL al link
-    link.download = 'example.pdf'; //Nombre del documento
+    link.download = 'reporte_Academico.pdf'; //Nombre del documento
     document.body.appendChild(link); // Se añade el enlace como hijo del elemento body
     link.click(); // Se simula que el usuario hizo clic en el enlace 
     } catch (error) {
@@ -313,11 +315,8 @@ const DashboardEstudiante2 = () => {
           try {
             const response = await axios.get('http://localhost:8000/api/v1/students/profile/grades/', config);
             const grades = response.data;
-            //window.alert(grades);
             const labels = grades.map(item => item.subject.code)//.flatMap(value => [value, value, value, value, value, value, value, value, value, value]);
-            //window.alert(labels);
             const values = grades.map(item => item.final_grade)//.flatMap(value => [value, value, value, value, value, value, value, value, value, value]);
-            //window.alert(values);
             setBarChart({
               labels: labels,
               datasets: [{
@@ -627,7 +626,7 @@ const DashboardEstudiante2 = () => {
         <div className={styles.listItems}>
           <button className={styles.constructorOverflowMenu } onClick={handleDownload}>
             <div className={styles.textElementsTitle}>
-              <p className={styles.title}>Download report</p>
+              <p className={styles.download}>Download report</p>
             </div>
             <div className={styles.elementsOverflowMenus}>
               <img className={styles.vectorIcon} alt="" src="/vector.svg" />

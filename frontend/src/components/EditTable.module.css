@@ -1,0 +1,154 @@
+.titleTableChild {
+  position: relative;
+  border-radius: var(--br-8xs);
+  background-color: var(--color-whitesmoke-600);
+  border: 1px solid var(--neutral-40);
+  box-sizing: border-box;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+}
+.eduardoSegura {
+  position: relative;
+  letter-spacing: 0.3px;
+  line-height: 24px;
+}
+.product {
+  width: 280px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-xs) var(--padding-231xl) var(--padding-xs)
+    var(--padding-xl);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--neutral-90);
+}
+.div {
+  position: relative;
+  line-height: 24px;
+  display: inline-block;
+  width: 95px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.customer {
+  width: 117px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-xs) var(--padding-13xl);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.rejected {
+  position: relative;
+  line-height: 24px;
+  font-weight: 500;
+}
+.rejectedWrapper,
+.status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.rejectedWrapper {
+  border-radius: var(--br-3xs);
+  background-color: var(--color-mistyrose);
+  padding: var(--padding-12xs) var(--padding-mini);
+}
+.status {
+  width: 99px;
+  height: 38px;
+  flex-shrink: 0;
+  padding: var(--padding-xs) var(--padding-13xl);
+  box-sizing: border-box;
+  font-size: var(--font-size-3xs);
+}
+.p {
+  margin: 0;
+}
+.feb202020Container {
+  position: relative;
+  line-height: 20px;
+}
+.createdDate {
+  width: 134px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-xs) var(--padding-13xl) var(--padding-xs)
+    var(--padding-8xl);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: var(--font-size-3xs);
+  color: var(--neutral-70);
+}
+.div1 {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+}
+.deadline {
+  width: 111px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-xs) var(--padding-13xl);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: var(--component-annotation-regular-size);
+}
+.editar {
+  position: relative;
+  letter-spacing: 0.3px;
+  line-height: 16px;
+}
+.chevronDownIcon {
+  position: relative;
+  width: 11px;
+  height: 17px;
+  flex-shrink: 0;
+}
+.btnAction {
+  border-radius: var(--br-sm);
+  border: 1px solid var(--neutral-50);
+  padding: var(--padding-8xs) var(--padding-mini);
+  gap: var(--gap-8xs);
+}
+.action,
+.btnAction,
+.titleTable {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.action {
+  width: 99px;
+  height: 38px;
+  flex-shrink: 0;
+  padding: var(--padding-xs) var(--padding-13xl);
+  box-sizing: border-box;
+  color: var(--color-cornflowerblue-100);
+}
+.titleTable {
+  background-color: var(--color-gray-200);
+  padding: var(--padding-xs) var(--padding-base);
+  gap: var(--gap-3xs);
+  text-align: left;
+  font-size: var(--caption-12-size);
+  color: var(--neutral-80);
+  font-family: var(--font-red-hat-display);
+}
