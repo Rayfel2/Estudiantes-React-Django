@@ -6,6 +6,9 @@ import axios from 'axios';
 const VerPerfil = () => {
 
 
+      function handleBackClick() {
+        window.history.back();
+    }
   const { access } = JSON.parse(localStorage.getItem('token'));
   const config = {
     headers: {
@@ -64,7 +67,7 @@ const VerPerfil = () => {
               defaultValue={useremail}
               readOnly
             />
-            <div className={styles.cumpleaos}>Cumpleaños</div>
+            <div className={styles.cumpleaos}>Email</div>
           </div>
           <div className={styles.groupDiv}>
             <input
@@ -74,7 +77,7 @@ const VerPerfil = () => {
               defaultValue={userbirth}
               readOnly
             />
-            <div className={styles.email}>{`Email `}</div>
+            <div className={styles.email}>Cumpleaños</div>
           </div>
           <div className={styles.groupParent1}>
             <input
@@ -106,13 +109,11 @@ const VerPerfil = () => {
             />
             <div className={styles.id}>ID</div>
           </div>
-          <a href = "/">
           <button className={styles.frameWrapper}>
-            <button className={styles.regresarWrapper}>
+            <button className={styles.regresarWrapper} onClick={handleBackClick}>
               <div className={styles.regresar}>REGRESAR</div>
             </button>
           </button>
-          </a>
         </div>
         <div className={styles.configuracion}>Configuracion</div>
         <div className={styles.verPerfilItem} />

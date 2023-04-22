@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form } from "react-bootstrap";
 import styles from "./LANDINGPAGEHOME.module.css";
 
+
 const LANDINGPAGEHOME = () => {
   return (
     <div className={styles.landingPageHome}>
@@ -32,13 +33,6 @@ const LANDINGPAGEHOME = () => {
               estudiantes y administración e especificación Del registro, tanto
               para estudiantes como para los profesores
             </div>
-            <Button type='button'
-              className={styles.ctaContactNow}
-              variant="outline-primary"
-              
-            >
-              REGISTRATE AHORA
-            </Button>
           </div>
         </div>
         <div className={styles.actividadEstudiantil}>
@@ -234,8 +228,7 @@ const LANDINGPAGEHOME = () => {
           
           <Button
             className={styles.button}
-            variant="primary"
-            href="/log-in"
+            href="/"
           >
             Iniciar Sesion
           </Button>

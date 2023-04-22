@@ -273,18 +273,12 @@ const PDFDocument = ({ data }) => (
           <div className={styles.headerItem} />
           <div className={styles.searchBar}>
             <div className={styles.searchBarChild} />
-            <input
-              className={styles.searchBarItem}
-              type="text"
-              placeholder="Search"
-            />
           </div>
           <div className={styles.tanggalanParent}>
             <div className={styles.tanggalan}>
               <div className={styles.tanggalanChild} />
               <div className={styles.marzo202023}>Marzo 20 2023 . 09:00 AM</div>
             </div>
-            <img className={styles.groupChild} alt="" src="/group-34160.svg" />
           </div>
         </div>
         

@@ -26,20 +26,43 @@ const navigate = useNavigate();
   };
 
   const handleRecovery = async (e) => {
-    if (password == confirmpassword){
     e.preventDefault();
-  
-    
-    const {data} = await axios.post("http://localhost:8000/api/v1/students/login/",
-    {
-      email: email,
-      new_password: password,
-      confirm_new_password: confirmpassword
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      window.alert("Ingrese un correo valido");
+      return;
     }
-    )
-    navigate("/dashboard-estudiante2");
+      // Validate password format
+  const passwordRegex = /^(?=.*[A-Z]).{7,}$/;
+  if (!passwordRegex.test(password)) {
+    window.alert("Ingrese una contraseña valida (minimo 7 caracteres y una mayuscula)");
+    return;
   }
+
+  if (password != confirmpassword){ 
+    window.alert("Confirme su contraseña...");
+    return;
   }
+
+
+      try {
+        const { data } = await axios.post("http://localhost:8000/api/v1/students/reset-password/", {
+          email: email,
+          new_password: password,
+          confirm_new_password: confirmpassword,
+        });
+    
+        navigate("/dashboard-estudiante2");
+      } catch (error) {
+        console.error("Error al llamar al API: ", error);
+        window.alert("Ha ocurrido un error al recuperar contraseña, verifique si ingreso el correo correcto");
+        return;
+      }
+    navigate("/");
+  }
+  
 
   return (
     <div className={styles.registrarUsuario}>

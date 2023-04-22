@@ -1,3 +1,12 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* un fondo transparente que oscurece el contenido debajo */
+  z-index: 999; /* un valor alto de z-index para que esté por encima del contenido debajo */
+}
 .headerIcon {
   position: absolute;
   top: 19px;

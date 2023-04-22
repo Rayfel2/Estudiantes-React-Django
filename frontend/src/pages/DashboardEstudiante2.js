@@ -86,6 +86,7 @@ var maplineschart = {
 };
 
 var lineoptions = {
+  maintainAspectRatio: false, // Desactivar la relación de aspecto fija
   plugins: {
     legend: {
       display: false // Ocultar la leyenda
@@ -291,7 +292,7 @@ const DashboardEstudiante2 = () => {
         setTotalQuarter(data.length);
         const index = [0, ...data.map(item => item.overall_gpa)];
         setLinesChart({
-          labels: [...Array(30).keys()].map((n) => n),
+          labels: [...Array((data.length+1)).keys()].map((n) => n),
           datasets: [ // Cada una de las líneas del gráfico
               {
                   label: '',
@@ -358,13 +359,7 @@ const DashboardEstudiante2 = () => {
               src="/rectangle-2772.svg"
             />
             <button className={styles.vuesaxlinearnotification}>
-              <img
-                className={styles.vuesaxlinearnotificationIcon}
-                alt=""
-                src="/vuesaxlinearnotification.svg"
-              />
             </button>
-            <img className={styles.groupItem} alt="" src="/ellipse-48.svg" />
           </div>
         </div>
       </div>
@@ -502,6 +497,9 @@ const DashboardEstudiante2 = () => {
             <b className={styles.asignaturasSeleccionadas}>
               Asignaturas seleccionadas
             </b>
+            <b className={styles.asignaturasSeleccionadas2}>
+              Indice trimestres cursados
+            </b>
             {(jValue+0 < datalength) && (
             <div className={styles.parent}>
               <b className={styles.b}>{finalgrade1}</b>
@@ -590,7 +588,7 @@ const DashboardEstudiante2 = () => {
 
         </div>
         <div className={styles.rectangleWrapper3}>
-        <div className="bg-light mx-auto px-2 border border-2 border-primary" style={{width:"500px"}}>
+        <div className="bg-light mx-auto px-2 border border-2 border-primary" style={{height:"275px"}}>
           <Line className={styles.reporteItem} data={linechart} options={lineoptions}/>
           </div>
           </div>

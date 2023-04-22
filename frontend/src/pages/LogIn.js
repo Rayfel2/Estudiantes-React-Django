@@ -85,9 +85,10 @@ const handleShowLoginForm = () => {
 
   
   return (
+    <div className={styles.logIn2}>
     <div className={styles.logIn}>
       <b className={styles.estudiante}>ESTUDIANTE</b>
-      <div className={styles.home}>Home</div>
+      <div className={styles.home}>Inicio</div>
       <div className={styles.queLesBrindamos}>Que les brindamos?</div>
       <div className={styles.sevicios}>Sevicios</div>
       <div className={styles.heroHeadline}>
@@ -101,15 +102,15 @@ const handleShowLoginForm = () => {
         <img className={styles.image8Icon} alt="" src="/image-8@2x.png" />
         <div className={styles.content}>
           <div className={styles.calcularIndiceAcademico}>
-            CALCULAR INDICE ACADEMICO
+            CALCULAR INDICE<br></br> ACADEMICO
           </div>
           <div className={styles.unaAplicacinPara}>
             Una aplicación para poder calcular el Índice Académico de los
             estudiantes y administración e especificación Del registro, tanto
-            para estudiantes como para los profesores
+            para estudiantes como para los profesores.
           </div>
           <div className={styles.ctaContactNow}>
-            <div className={styles.registrateAhora}>REGISTRATE AHORA</div>
+            <div className={styles.registrateAhora}>Registrate ahora</div>
           </div>
         </div>
       </div>
@@ -132,11 +133,8 @@ const handleShowLoginForm = () => {
         <div className={styles.loremIpsumDolorSitAmetCoParent}>
           <div
             className={styles.loremIpsumDolor}
-          >{`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non nisi nibh. Maecenas in hendrerit dui. Quisque aliquet porta ante in fringilla. `}</div>
+          >{` `}</div>
           <div className={styles.quePodemosBrindarlesWrapper}>
-            <div className={styles.quePodemosBrindarles}>
-              Que podemos brindarles?
-            </div>
           </div>
         <div className={styles.rectangleParent}>
           <div className={styles.groupChild} />
@@ -295,20 +293,21 @@ const handleShowLoginForm = () => {
         
         <div className={styles.iconsParent}>
           <img className={styles.icons1} alt="" src="/icons1.svg" />
-          <div className={styles.text123}>Iniciar sesion</div>
+          <div className={styles.text123}>Iniciar sesión</div>
         </div>
       </button>
-      <div >
+    </div>
+    <div >
         <form id="loginForm" className={styles.overlaySignIn}>
           <div className={styles.frameParent}>
             <div className={styles.iniciaSesionParent}>
-              <div className={styles.iniciaSesion}>Inicia sesion</div>
+              <div className={styles.iniciaSesion}>Iniciar sesión</div>
               <div className={styles.email}>
                 <div className={styles.labelParent}>
-                  <div className={styles.label}>Email o ID</div>
+                  <div className={styles.label}>Correo o ID</div>
                   <div className={styles.passwordHideSee}>
                     <img className={styles.icon} alt="" src="/icon.svg" />
-                    <div className={styles.hide}>Hide</div>
+                    <div className={styles.hide}>Ocultar</div>
                   </div>
                 </div>
                 <input className={styles.textField} type="text" 
@@ -319,9 +318,9 @@ const handleShowLoginForm = () => {
               </div>
               <div className={styles.email}>
                 <div className={styles.labelParent}>
-                  <div className={styles.label}>Password</div>
+                  <div className={styles.label}>Contraseña</div>
                   <div className={styles.passwordHideSee1}>
-                    <div className={styles.hide}>Hide</div>
+                    <div className={styles.hide}>Ocultar</div>
                   </div>
                 </div>
                 <input className={styles.textField} type="password" 
@@ -335,13 +334,13 @@ const handleShowLoginForm = () => {
                 <button className={styles.button2} onClick={handleLogin}>
                   <div className={styles.iconsContainer}>
                     <img className={styles.icons1} alt="" src="/icons3.svg" />
-                    <div className={styles.signUp2}>Log in</div>
+                    <div className={styles.signUp2}>Iniciar sesión</div>
                   </div>
                 </button>
                 <div className={styles.checkBoxWrapper}>
                   <div className={styles.checkBox}>
                     <input className={styles.checkBox1} type="checkbox" />
-                    <div className={styles.iWantTo}>Recordar sesion</div>
+                    <div className={styles.iWantTo}>Recordar sesión</div>
                   </div>
                 </div>
               </div>
@@ -358,9 +357,11 @@ const handleShowLoginForm = () => {
             </a>
             <div />
           </div>
-          <button type="button"className={styles.exiticon} onClick={handleHideButton}>
+          <a href="/landing-page">
+          <button type="button"className={styles.exiticon}>     
             <img className={styles.vectorIcon1} alt="" src="/icon.svg" />
           </button>
+          </a>
         </form>
       </div>
     </div>

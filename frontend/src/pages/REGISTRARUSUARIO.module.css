@@ -271,8 +271,8 @@
 }
 .pager {
   position: absolute;
-  top: 390px;
-  left: 975px;
+  top: 385px;
+  left: 986px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -375,11 +375,17 @@
   border-radius: var(--br-base);
   background-color: var(--color-cornflowerblue);
 }
+.groupItem:hover,
+.groupItem:focus{
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+}
+
 .payments1 {
   position: absolute;
   height: 68.75%;
   width: 86%;
-  top: 31.25%;
+  top: 27.25%;
   left: 7%;
   font-size: var(--desktop-body-button-button-text-small-size);
   letter-spacing: 0.25px;
@@ -388,6 +394,11 @@
   font-family: var(--font-montserrat);
   color: var(--white);
   text-align: center;
+}
+.payments1:hover,
+.payments1:focus{
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
 }
 .groupWrapper,
 .rectangleParent {
@@ -399,14 +410,20 @@
   bottom: 0;
   left: 0;
 }
+.rectangleParent:hover,
+.rectangleParent:focus{
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+}
+
 .groupWrapper {
   cursor: pointer;
   border: 0;
   padding: 0;
   background-color: transparent;
-  height: 21.86%;
+  height: 13.86%;
   width: 89.08%;
-  top: 87.14%;
+  top: 72.14%;
   right: 10.92%;
 }
 
@@ -414,18 +431,17 @@
 .groupWrapper:focus{
   animation: pulse 1s;
   box-shadow: 0 0 0 2em transparent;
-
 }
 .payments2 {
   position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
-  left: 0;
-  font-size: var(--font-size-xs);
+  left: 5px;
+  font-size: 15px;
   letter-spacing: 0.25px;
   line-height: 28px;
-  font-weight: 500;
+  font-weight: 400;
   font-family: var(--font-montserrat);
   color: var(--color-darkslategray-100);
   text-align: left;
@@ -455,7 +471,7 @@
   bottom: 0;
 }
 .groupContainer {
-  height: 26.16%;
+  height: 16.16%;
   width: 51.21%;
   right: 48.79%;
   bottom: 73.84%;
@@ -470,10 +486,11 @@
 .payments3 {
   height: 100%;
   width: 100%;
-  left: 0;
-  font-size: var(--font-size-xs);
+  left: 5px;
+  font-size: 15px;
   letter-spacing: 0.25px;
   line-height: 28px;
+  font-weight: 400;
   font-family: var(--font-montserrat);
   color: var(--color-darkslategray-100);
   text-align: left;
@@ -507,26 +524,30 @@
   right: 0;
   bottom: 0;
 }
-.groupParent1,
+.groupParent1{
+  position: absolute;
+  height: 16.16%;
+  width: 43.5%;
+  top: 20.14%;
+  right: 57.45%;
+  bottom: 33.69%;
+  left: 0;
+}
 .groupParent2 {
   position: absolute;
-  height: 26.16%;
+  height: 16.16%;
   width: 43.5%;
   top: 40.14%;
   right: 57.45%;
   bottom: 33.69%;
   left: 0;
 }
-.groupParent2 {
-  right: 12%;
-  left: 48.5%;
-}
 .groupParent,
 .torusIcon {
   position: absolute;
-  height: 26.8%;
+  height: 40.8%;
   width: 51.76%;
-  top: 34.58%;
+  top: 23.58%;
   right: 36.27%;
   bottom: 38.62%;
   left: 11.97%;
@@ -552,17 +573,17 @@
 }
 .component1Child {
   position: absolute;
-  top: 65.56%;
+  top: 62.56%;
   right: 40.71%;
   bottom: 34.34%;
   left: 11.86%;
   opacity: 0.2;
 }
 .component1Item {
-  top: 56.32%;
+  top: 49.32%;
   right: 41.81%;
   bottom: 45.58%;
-  left: 10.76%;
+  left: 12%;
 }
 .component1Item,
 .lineDiv,
@@ -573,7 +594,7 @@
 .lineDiv {
   height: 0.1%;
   width: 47.43%;
-  top: 30.5%;
+  top: 21.5%;
   right: 40.71%;
   bottom: 69.4%;
   left: 11.86%;
@@ -595,10 +616,10 @@
 .mathewJohn {
   position: absolute;
   height: 16.04%;
-  width: 28.56%;
-  top: 17.29%;
+  width: 50.56%;
+  top: 13.29%;
   left: 11.89%;
-  font-size: 48px;
+  font-size: 45.5px;
   line-height: 68px;
   display: inline-block;
   font-family: var(--font-montserrat);

@@ -644,6 +644,7 @@
   top: 265.06px;
 }
 .asignaturasSeleccionadas,
+.asignaturasSeleccionadas2,
 .b4,
 .b5 {
   position: absolute;
@@ -656,6 +657,15 @@
   text-align: left;
   width: 367.36px;
   height: 29.02px;
+}
+.asignaturasSeleccionadas2 {
+  top: 50.45px;
+  left: -370.52px;
+  font-size: var(--font-size-lg);
+  text-align: left;
+  width: auto;
+  height: 29.02px;
+  color: var(--color-royalblue);
 }
 .b5 {
   top: 6.79px;
@@ -1032,7 +1042,7 @@
   overflow-x: scroll;
   overflow-y: hidden;
   width: 23em;
-  height: auto;
+  height: 30em;
   white-space: nowrap;
 
 }

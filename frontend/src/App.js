@@ -14,6 +14,7 @@ import SeleccionEstudiante1 from "./pages/SeleccionEstudiante1";
 import SeleccionEstudiante2 from "./pages/SeleccionEstudiante2";
 import MateriasEstudiante from "./pages/MateriasEstudiante";
 import CalificacionesEstudiante from "./pages/CalificacionesEstudiante";
+import LANDINGPAGEHOME from "./pages/LANDINGPAGEHOME"
 import { useEffect } from "react";
 
 function App() {
@@ -99,6 +100,7 @@ function App() {
         element={<CalificacionesEstudiante />}
       />
       <Route path="/dashboard-profesor" element={<DashboardProfesor />} />
+      <Route path="/landing-page" element={<LANDINGPAGEHOME />} />
     </Routes>
   );
 }

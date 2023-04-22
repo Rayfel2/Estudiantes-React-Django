@@ -1,9 +1,10 @@
 .estudiante {
   position: absolute;
-  top: 43px;
+  top: 36px;
   left: 132px;
   font-size: 27.15px;
   color: var(--color-cornflowerblue);
+  font-size: 40px;
 }
 .home,
 .queLesBrindamos,
@@ -64,6 +65,7 @@
   width: 457px;
   height: 67px;
   -webkit-text-stroke: 1px #000;
+  font-size: 25px;
 }
 .unaAplicacinPara {
   position: absolute;
@@ -804,8 +806,9 @@
   position: relative;
   letter-spacing: 0.07em;
   -webkit-text-stroke: 0.5px #fff;
-  left: 7px;
+  left: 5.5px;
   font-size: 13px;
+  top: 2px;
 }
 .button {
   cursor: pointer;
@@ -819,7 +822,7 @@
   height: 40px;
   text-align: center;
   color: white;
-  background-color: #009EF7;
+  background-color: #5A5A5A;
 }
 .iconsGroup {
   position: absolute;
@@ -936,11 +939,13 @@
   font-family: var(--font-montserrat);
   color: var(--white);
   text-align: center;
+  left: 0px;
+  right: 10px;
 }
 .iconsContainer {
   position: absolute;
   top: calc(50% - 11.5px);
-  left: calc(50% - 27.5px);
+  left: calc(45% - 27.5px);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -968,13 +973,12 @@
   height: 24px;
 }
 .iWantTo {
-  cursor: pointer;
   position: relative;
   font-size: var(--desktop-headlines-h5-size);
   font-family: var(--font-poppins);
-  color: var(--color-cornflowerblue);
+  color: #5A5A5A;
   text-align: left;
-  top: 3px;
+  top: 0px;
 }
 .checkBox,
 .checkBoxWrapper {
@@ -1080,13 +1084,12 @@
 }
 .overlaySignIn {
   top: 86px;
-  left: 1345px;
+  left: 745px;
   border-radius: var(--br-5xl);
   background-color: var(--color-gray-200);
   box-shadow: 6px 5px 4px rgba(0, 0, 0, 0.4);
   width: 536px;
   height: 646px;
-  display: none;
 }
 .content1 {
   top: 116px;
@@ -1099,11 +1102,17 @@
 .logIn {
   position: relative;
   background-color: var(--color-gray-100);
-  width: 100%;
+  width: 75%;
+  left: 230px;
   height: 1317px;
   overflow: hidden;
   text-align: left;
   font-size: var(--desktop-headlines-h5-size);
   color: var(--color-black);
   font-family: var(--font-montserrat);
+  filter: blur(15px);
+}
+
+.button1234{
+  color:#009EF7;
 }

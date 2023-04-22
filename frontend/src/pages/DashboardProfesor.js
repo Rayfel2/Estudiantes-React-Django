@@ -16,6 +16,8 @@ const DashboardProfesor = () => {
   const [studentChanges, setStudentChanges] = useState({});
   const [filtercode, setFilterCode] = useState(null);
   const [change, setChange] = useState(0);
+  const [username, setUsername] = useState("");
+  const [userlastname, setUserlastname] = useState("");
    // const [selectedStudent, setSelectedStudent] = useState(null);
 
 
@@ -41,17 +43,17 @@ const DashboardProfesor = () => {
   // const handleEditClick = (student) => {
   //   setSelectedStudent(student);
   // };
+  const [updateMidterm, setUpdateMidterm] = useState(0);
+  const [updateFinalGrade, setUpdateFinalGrade] = useState(0);
 
-  const handleInputChange = (event, field) => {
-    setStudentChanges({
-      ...studentChanges,
-      [selectedStudent.ide]: {
-        ...studentChanges[selectedStudent.ide],
-        [field]: parseFloat(event.target.value),
-      },
-    });
+  const handleInputChange = (event, fieldName) => {
+    const value = parseFloat(event.target.value);
+    if (fieldName === "midTerm"){
+    setUpdateMidterm(value);
+  } else if (fieldName === "finalGrade"){
+    setUpdateFinalGrade(value);
+  }
   };
-  
 
   const handleRowClick = (index) => {
     if (selectedRowIndex === index) {
@@ -67,10 +69,12 @@ const DashboardProfesor = () => {
     setIsFormVisible(true);
  
   };
+  
   function StudentRow(props) {
     const { student } = props;
     const updatedStudent = { ...student, ...props.studentChanges[student.ide] };
   
+    
     return (
       <tr
         className={props.isSelected ? styles.selectedRow : ""}
@@ -109,22 +113,52 @@ const DashboardProfesor = () => {
   const handleSave = async () => {
     setChange(change + 1);
     // Actualizar los datos del estudiante en el estado local
-    const updatedStudents = students.map((student) =>
-      student.ide === selectedStudent.ide ? { ...student, ...studentChanges[selectedStudent.ide] } : student
-    );
-    setStudents(updatedStudents);
     setIsFormVisible(false);
     setSelectedStudent(null);
     setStudentChanges({ ...studentChanges, [selectedStudent.ide]: studentChanges[selectedStudent.ide] });
-  
-    // Enviar la solicitud PUT a la API
     try {
+      const { data } = await axios.post(
+        `http://localhost:8000/api/v1/professor/subjects/${selectedStudent.ide}/grade`,
+        {
+          midterm_grade: updateMidterm,
+          final_grade: updateFinalGrade,
+        },
+        config,
+        
+      );
+      
+      console.log(data); // Imprimir la respuesta de la API en la consola
+      window.alert("Calificacion publicada con exito")
+    } catch (error) {
+      try {
+        const { data } = await axios.put(
+          `http://localhost:8000/api/v1/professor/subjects/${selectedStudent.ide}/grade/review`,
+          {
+            
+            final_grade: updateFinalGrade,
+            midterm_grade: updateMidterm,
+            
+          },
+          config,
+          
+        );
+        
+        console.log(data); // Imprimir la respuesta de la API en la consola
+        window.alert("Calificacion guardada con exito")
+      } catch (error) {
+        window.alert("No se pudo publicar/editar la calificacion");
+      }
+    }
+    // Enviar la solicitud PUT a la API
+    /*
+    try {
+      window.alert(updateFinalGrade);
       const { data } = await axios.put(
         `http://localhost:8000/api/v1/professor/subjects/${selectedStudent.ide}/grade/review`,
         {
           
-          final_grade: selectedStudent.finalGrade,
-          midterm_grade: selectedStudent.midTerm,
+          final_grade: updateFinalGrade,
+          midterm_grade: updateMidterm,
           
         },
         config,
@@ -133,12 +167,14 @@ const DashboardProfesor = () => {
       
       console.log(data); // Imprimir la respuesta de la API en la consola
       window.alert("Calificacion guardada con exito")
+      
     } catch (error) {
       window.alert("No se pudieron guardar los cambios")
       console.error(error); // Imprimir cualquier error en la consola
     }
-    
+    */
   };
+  
   
   
 /*
@@ -166,9 +202,6 @@ const DashboardProfesor = () => {
 
   const [students, setStudents] = useState([]);
   const [codestudents, setCodeStudents] = useState([]);
-
-
-
 
  
 
@@ -235,6 +268,20 @@ useEffect(() => {
   }
   getSubjects();
 }, [filtercode, change]);
+
+async function getProfile() {
+  const { data }  = await axios.get(
+    'http://localhost:8000/api/v1/professor/profile/',
+    config
+  );
+  const subjectData = data;
+  const { user: {first_name, last_name}} = subjectData;
+setUsername(first_name);
+setUserlastname(last_name);
+
+
+} 
+  getProfile();
   return (
     <div className={styles.dashboardProfesor}>
       <img className={styles.headerIcon} alt="" src="/header.svg" />
@@ -246,7 +293,7 @@ useEffect(() => {
         <div className={styles.ellipseParent}>
           <img className={styles.frameInner} alt="" />
           <div className={styles.davidFelixParent}>
-            <b className={styles.davidFelix}>David Felix</b>
+            <b className={styles.davidFelix}> {username} {userlastname}</b>
             <div className={styles.profesor}>Profesor</div>
           </div>
         </div> </a>
@@ -316,7 +363,7 @@ useEffect(() => {
               isSelected={selectedRowIndex === index}
               onClick={() => setSelectedRowIndex(index)}
               onEditClick={() => handleEditClick(student)}
-              studentChanges={studentChanges} // Agregue esta línea
+              studentChanges={studentChanges} 
             />
           ))}
           </tbody>
@@ -401,7 +448,7 @@ useEffect(() => {
         <button type="button" className={styles.button} onClick={handleSave}>
           <div className={styles.text}>Guardar</div>
         </button>
-        <button onClick={() => setIsFormVisible(false)} type="button" className={styles.closeButton}>
+        <button onClick={() => setIsFormVisible(false)} type="button" className={styles.closeButton}> 
           <img
             className={styles.fiRrArrowLeftIcon}
             alt=""
@@ -416,7 +463,7 @@ useEffect(() => {
             placeholder="Input placeholder"
             defaultValue={selectedStudent?.midTerm || ""}
             onChange={(event) => handleInputChange(event, "midTerm")}
-            readOnly={selectedStudent?.status === "R"}
+            readOnly={selectedStudent?.status === "R" || selectedStudent?.midTerm != 0}
           />
         </Form.Group>
       </form> )}

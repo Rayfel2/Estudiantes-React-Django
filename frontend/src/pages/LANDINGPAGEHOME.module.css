@@ -64,7 +64,7 @@
 }
 .unaAplicacinPara {
   position: absolute;
-  top: 142px;
+  top: 150px;
   left: 3px;
   font-size: var(--desktop-headlines-h5-size);
   line-height: 160%;
@@ -422,7 +422,7 @@
 }
 .variosEstudiantesSeleccionad {
   position: absolute;
-  top: 58px;
+  top: 105px;
   left: 309px;
   line-height: 160%;
   color: var(--color-gray-400);
@@ -432,7 +432,7 @@
 }
 .loQueDicen {
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 301px;
   font-size: var(--font-size-21xl);
   -webkit-text-stroke: 1px #000;
@@ -635,6 +635,7 @@
 .button {
   flex: 1;
   position: relative;
+  color: var(--color-cornflowerblue);
 }
 .loginSignUp {
   position: absolute;
@@ -826,7 +827,7 @@
   left: 20px;
 }
 .groupParent {
-  top: 43px;
+  top: 37px;
   left: 944px;
   width: 176px;
   height: 178px;
@@ -943,8 +944,11 @@
   width: 1440px;
   height: 4102px;
   flex-shrink: 0;
+  color: black;
   overflow: hidden;
-  color: inherit;
+}
+.landingPageHome1:hover{
+  color: black;
 }
 .landingPageHome {
   position: relative;

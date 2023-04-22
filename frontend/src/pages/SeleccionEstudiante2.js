@@ -92,6 +92,7 @@ const SeleccionEstudiante2 = () => {
 
   function handleChangeChecked(event) {
     setIsChecked(event.target.checked);
+    setSelectedSubjects([]);
     setButtonValue(buttonValue + 1)
   }
 
@@ -109,12 +110,15 @@ const SeleccionEstudiante2 = () => {
     setJValue(jValue - 6);
   }
 
+
+
   const { access } = JSON.parse(localStorage.getItem('token'));
   const config = {
     headers: {
       Authorization: `Bearer ${access}`,
     },
   };
+  
 
 
   const [selectedSubjects, setSelectedSubjects] = useState([]);
@@ -129,6 +133,9 @@ const SeleccionEstudiante2 = () => {
       window.alert("Debes seleccionar al menos una asignatura");
       return;
     }
+    const confirmed = window.confirm(`¿Está seguro de que desea guardar la seleccion?`);
+
+    if (confirmed) {
     setSelectedSubjects([]);
     selectedSubjects.forEach((subject) => {
       axios
@@ -145,6 +152,7 @@ const SeleccionEstudiante2 = () => {
           console.error("Ocurrió un error al seleccionar el recurso:", error);
         });
     });
+  }
   }
 
   // Función que se ejecuta cuando el usuario selecciona una opción en cualquiera de los select
@@ -180,7 +188,7 @@ const SeleccionEstudiante2 = () => {
 
 
       const { data } = await axios.get(
-        'http://localhost:8000/api/v1/professor/subjects/',
+        'http://localhost:8000/api/v1/professor/subjects/', 
         config
       );
 
@@ -334,12 +342,6 @@ const SeleccionEstudiante2 = () => {
           </div>
           <button className={styles.rectangleParent}>
             <div className={styles.groupChild} />
-            <img
-              className={styles.vuesaxlinearnotificationIcon}
-              alt=""
-              src="/vuesaxlinearnotification1.svg"
-            />
-            <img className={styles.groupItem} alt="" src="/ellipse-48.svg" />
           </button>
         </section>
       </div>
@@ -397,19 +399,19 @@ const SeleccionEstudiante2 = () => {
           </div>)}
         {(jValue + 3 < datalength) && (
           <div className={styles.g4}>
-              <select className={styles.selectSimple3} value={selectedSubjects.includes(`${subjectid4}`) ? `${subjectid4}` : "0"} onChange={handleSelectChange} disabled={isChecked}>
-              {isChecked ? null : <option value="0">Seleccionar...</option>}
-            <option value={`${subjectid4}`}>{professorname4}  {professorlastname4}</option>
-            </select>
-            <div className={styles.seleccionada3}>Cr.{subjectcredit4} - {subjectlab4 ? 'Si' : 'No'} lab</div>
-            <div className={styles.ids202AseguramientoDeLaCContainer}>
-              <div className={styles.ids202Aseguramiento2}>
+                        <div className={styles.ids202AseguramientoDeLaCContainer}>
+              <div className={styles.ids202Aseguramiento2} >
                 {subjectcode4} - {subjectname4}
               </div>
               
             </div>
+              <select className={styles.selectSimple} value={selectedSubjects.includes(`${subjectid4}`) ? `${subjectid4}` : "0"} onChange={handleSelectChange} disabled={isChecked} style={{ marginLeft: "-50px", fontSize: "20px" }}>
+              {isChecked ? null : <option value="0">Seleccionar...</option>}
+            <option value={`${subjectid4}`}>{professorname4}  {professorlastname4}</option>
+            </select>
+            <div className={styles.seleccionada3}>Cr.{subjectcredit4} - {subjectlab4 ? 'Si' : 'No'} lab</div>
 
-          </div>)}
+            </div>)}
         {(jValue + 4 < datalength) && (
           <div className={styles.g5}>
             <div className={styles.g3Child} />
